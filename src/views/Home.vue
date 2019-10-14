@@ -4,7 +4,22 @@
     <div id="content">
       aa
     </div>
-    <footer>底</footer>
+    <footer>
+      <ul>
+        <li>
+          <i class="iconfont icon-huaban"></i>
+          <span>看片</span>
+        </li>
+        <li>
+          <i class="iconfont icon-goupiao"></i>
+          <span>购票</span>
+        </li>
+        <li>
+          <i class="iconfont icon-home"></i>
+          <span>我的</span>
+        </li>
+      </ul>
+    </footer>
   </div>
 </template>
 
@@ -31,7 +46,18 @@ export default {
     footer{
       width: 100%;
       height: 50px;
-      background: green;
+      ul{
+        display: flex;
+        height: 50px;
+        li{
+          display: flex;
+          flex-direction: column;
+          flex:1;
+          text-align: center;
+          font-size: 16px;
+          justify-content: center;
+        }
+      }
     }
     #content{
       background: yellow;
