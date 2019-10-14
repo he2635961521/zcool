@@ -7,15 +7,15 @@
 
     <ul class="navbar">
         <router-link tag="li" to="/films">
-            <i class="iconfont icon-films"></i>
-            <span>电影</span>
+            <i class="iconfont icon-dianying"></i>
+            <span>看片</span>
         </router-link>
         <router-link tag="li" to="/cinemas">
-            <i class="iconfont icon-cinemas"></i>
-            <span>影院</span>
+            <i class="iconfont icon-goupiao1"></i>
+            <span>购票</span>
         </router-link>
         <router-link tag="li" to="/center">
-            <i class="iconfont icon-center"></i>
+            <i class="iconfont icon-yonghu-copy"></i>
             <span>我的</span>
         </router-link>
     </ul>
@@ -23,7 +23,7 @@
 </template>
 
 <style lang="scss">
-// @import '../../assets/common/mixins.scss'
+// @import '../../assets/styles/common/mixins.scss';
 
 .page-home{
     height:100%;
@@ -59,7 +59,7 @@
             }
 
             &.router-link-active {
-                color: #ff5f16;
+                color: rgb(255, 0, 0);
             }
         }
     }
