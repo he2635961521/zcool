@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-
+import Person from './views/person/person.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -11,6 +11,11 @@ export default new Router({
       name: 'home',
       component: Home
     },
+    {
+      path: '/person',
+      name: 'person',
+      component: Person
+    }
     // {
     //   path: '/about',
     //   name: 'about',
