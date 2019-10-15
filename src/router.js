@@ -5,6 +5,9 @@ import hotMovieList from './components/hot-showing.vue'
 import comingList from './components/coming-soon.vue'
 import gpscity from './views/choice-city.vue'
 
+import Home from './views/Home.vue'
+const Person = () => import('./views/person/person.vue')
+const Login = () => import('./views/person/login.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -27,8 +30,17 @@ export default new Router({
     {
       path: '/selectCity',
       component: gpscity
+    },
+    {
+      path: '/person',
+      name: 'person',
+      component: Person
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
-
     // {
     //   path: '/about',
     //   name: 'about',
