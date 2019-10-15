@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import bookTicket from './views/book-ticket.vue'
+import hotMovieList from './components/hot-showing.vue'
+import comingList from './components/coming-soon.vue'
+import gpscity from './views/choice-city.vue'
 
 Vue.use(Router)
 
@@ -9,8 +12,23 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: bookTicket
+      component: bookTicket,
+      redirect: '/list',
+      children: [
+        {
+          path: '/list',
+          components: {
+            a: hotMovieList,
+            b: comingList
+          }
+        }
+      ]
+    },
+    {
+      path: '/selectCity',
+      component: gpscity
     }
+
     // {
     //   path: '/about',
     //   name: 'about',

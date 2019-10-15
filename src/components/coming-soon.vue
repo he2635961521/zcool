@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="buyTiket">
-            <img src="http://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/images/icon/oreder.png" alt="">
+            <span>预售</span>
         </div>
       </li>
     </ul>
@@ -41,7 +41,7 @@ export default {
   },
 
   created () {
-    axios.get('http://movie.miguvideo.com/mgw/bsdata4mv/v2/movieListShow/4708?cityCode=4900').then(respose => {
+    axios.get('http://movie.miguvideo.com/mgw/bsdata4mv/v2/movieListPreview?pageNo=0&pageSize=20').then(respose => {
       this.hotMovieList = respose.data.body.movieList
     })
   }
@@ -78,10 +78,6 @@ export default {
           .director{
             margin-top:20px;
             font-size: 14px;
-            width: 205px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
           }
           .actor{
             margin-top: 5px;
@@ -97,9 +93,15 @@ export default {
           height:100%;
           display: flex;
           align-items: center;
-          img{
+          span{
             width: 46px;
             height: 26px;
+            color: rgb(107,188,203);
+            border: 1px solid rgb(107,188,233);
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 26px;
           }
         }
       }
