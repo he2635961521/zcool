@@ -27,19 +27,23 @@
 
         <FilmList v-if="curFilmType=='0'" />
         <FreeWatch v-if="curFilmType=='1'"/>
+        <FilmMenu v-if="curFilmType=='2'"/>
+
     </div>
 </template>
 
 <script>
     import FilmList from '../../components/filmList'
     import FreeWatch from '../../components/freeWatch'
+    import FilmMenu from '../../components/filmMenu'
 
     export default{
         name: 'Films',
 
         components: {
             FilmList,
-            FreeWatch
+            FreeWatch,
+            FilmMenu
         },
 
         data () {
