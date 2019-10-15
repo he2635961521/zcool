@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Person from './views/person/person.vue'
+const Person = () => import('./views/person/person.vue')
+const Login = () => import('./views/person/login.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -15,6 +16,11 @@ export default new Router({
       path: '/person',
       name: 'person',
       component: Person
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
     // {
     //   path: '/about',
