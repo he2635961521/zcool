@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 第一个轮播图 -->
     <div class="swiper-container1">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
@@ -25,13 +26,17 @@
         </div>
       </div>
       <!-- Add Pagination -->
+      <!-- 轮播图插件 -->
       <div class="swiper-pagination1"></div>
     </div>
 
+    <!-- 第二个轮播图 -->
     <div class="module">
+      <!-- 售票标栏,module-name引入了背景图片 -->
       <div class="module-name grey font-16">正在售票</div>
       <div class="swiper-container">
         <div class="swiper-wrapper">
+          <!-- 单个轮播图 -->
           <div class="swiper-slide">
             <img src="http://movie.miguvideo.com/publish/i_www/image/70/755/851.jpg" />
             <div class="content-intro">
@@ -127,6 +132,7 @@
       </div>
     </div>
 
+    <!-- 第三个轮播图 -->
     <div class="module">
       <div class="module-name grey font-16">精彩活动</div>
       <div class="swiper-container2">
@@ -181,13 +187,63 @@
 <script>
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
+import axios from "axios";
 export default {
+  state: {
+    filmList: []
+  },
+
+  created() {
+    axios
+      .post(
+        "/migu/lovev/miguMovie/data/seeFilmData.jsp",
+        {
+          nodeId: 70022794,
+          pagesize: 3,
+          pageidx: 1
+        },
+        {
+          transformRequest(data) {
+            //console.log(data);
+            // {key1: 'value1', key2: 'value2', key3: 'value3'}
+            // 'key1=value1&key2=value2&key3=value3'
+            let arr = [];
+            for (let key in data) {
+              arr.push(`${key}=${data[key]}`);
+            }
+            return arr.join("&");
+          }
+        }
+      )
+      .then(response => {
+        this.filmList = response.data;
+        //if (result.status === 0) {
+        // commit('setFilmList', result.data.films)
+        // 要先仓库中 filmList 的数据，与请求得来的数据做一个拼接的操作
+        //commit("setFilmList", state.filmList.concat(result.data.films));
+        // commit('setFilmList', state.filmList.push(result.data.films))
+        // let filmList = state.filmList
+        // filmList.push(...result.data.films)
+        // commit('setFilmList', filmList)
+
+        // 执行传递过来的 payload.callback 这个回调函数
+        // payload.callback && payload.callback()
+
+        // if (payload.callback) {
+        //   payload.callback();
+        // }
+        //}
+      });
+  },
+
   mounted() {
+    // 第二个轮播的js设置
     new Swiper(".swiper-container", {
       slidesPerView: 3.2,
       spaceBetween: 0
     });
 
+    // 第一个轮播图的js设置
     new Swiper(".swiper-container1", {
       effect: "coverflow",
       grabCursor: true,
@@ -211,6 +267,7 @@ export default {
       }
     });
 
+    // 第三个轮播图的js设置
     new Swiper(".swiper-container2", {
       pagination: {
         el: ".swiper-pagination2",
@@ -244,6 +301,7 @@ export default {
   // background:red;
   position: relative;
 
+  // 标栏背景图设置
   .module-name {
     height: 45px;
     line-height: 45px;
@@ -288,19 +346,13 @@ export default {
   }
 }
 
+// 第二个轮播样式
 .swiper-container {
   .swiper-slide {
     height: 229px;
     font-size: 18px;
     background: #fff;
 
-    /* Center slide text vertically */
-    // display: -webkit-box;
-    // display: -ms-flexbox;
-    // display: -webkit-flex;
-    // display: flex;
-    // -webkit-justify-content: center;
-    // justify-content: center;
     .content-intro p {
       line-height: 1.7em;
       padding-left: 12px;
@@ -318,6 +370,7 @@ export default {
   }
 }
 
+// 第一个轮播样式
 .swiper-container1 {
   width: 100%;
   padding-top: 10px;
@@ -336,6 +389,7 @@ export default {
   }
 }
 
+// 第三个轮播样式
 .swiper-container2 {
   height: 140px;
   position: relative;
@@ -344,7 +398,7 @@ export default {
     height: 2px;
     position: absolute;
     bottom: 0;
-    z-index: 99
+    z-index: 99;
   }
 }
 .swiper-slide {
