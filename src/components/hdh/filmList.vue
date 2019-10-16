@@ -168,7 +168,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/styles/common/mixins.scss";
+// @import "../assets/styles/common/mixins.scss";
 
 .banner {
   height: 210px;
