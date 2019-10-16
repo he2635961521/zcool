@@ -30,16 +30,16 @@
     </div>
 
 
-    <FilmList />
-    <!-- <FilmList v-if="curFilmType == '0'"/>
-    <video v-if="curFilmType == '3'" /> -->
+
+    <FilmList v-if="curFilmType == '0'"/>
+    <video v-if="curFilmType == '3'" />
 
   </div>
 </template>
 
 <script>
-import FilmList from "../../components/filmList";
-// import video from "../../components/video";
+import FilmList from "../../components/hdh/filmList";
+import video from "../../components/hdh/video";
 
 export default {
   name: "Films",
