@@ -29,13 +29,17 @@
       </div>
     </div>
 
-    <FilmList v-if="curFilmType == '0'"/>
+
+    <FilmList />
+    <!-- <FilmList v-if="curFilmType == '0'"/>
+    <video v-if="curFilmType == '3'" /> -->
 
   </div>
 </template>
 
 <script>
 import FilmList from "../../components/filmList";
+// import video from "../../components/video";
 
 export default {
   name: "Films",
