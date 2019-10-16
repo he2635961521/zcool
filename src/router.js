@@ -5,6 +5,9 @@ const Person = () => import('./views/person/person.vue')
 const Login = () => import('./views/person/login.vue')
 const Order = () => import('./views/person/order.vue')
 const Register = () => import('./views/person/register.vue')
+const Userinfo = () => import('./views/person/userinfo.vue')
+const Moviecard = () => import('./views/person/moviecard.vue')
+const Showcard = () => import('./views/person/showcard.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -25,14 +28,31 @@ export default new Router({
       component: Login
     },
     {
-      path: '/order',
+      path: '/person/order',
       name: 'order',
-      component: Order
+      component: Order,
+      children: [
+        {
+          path: 'moviecard',
+          name: 'moviecard',
+          component: Moviecard
+        },
+        {
+          path: 'showcard',
+          name: 'showcard',
+          component: Showcard
+        }
+      ]
     },
     {
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/userinfo',
+      name: 'userinfo',
+      component: Userinfo
     }
     // {
     //   path: '/about',

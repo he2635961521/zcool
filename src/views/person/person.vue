@@ -10,11 +10,11 @@
         <!-- head结束 -->
         <div class="page-head">
           <a href="#">
-            <router-link to="/login">
+            <router-link :to="tolink">
                <div class="user">
               <div class="photo"></div>
             </div>
-            <p>点击登录</p>
+            <p>{{message}}</p>
                </router-link>
           </a>
           <div class="past">
@@ -26,7 +26,7 @@
             <div class="list">
               <ul>
                 <li>
-                  <router-link to="/order">
+                  <router-link to="/person/order">
                     <div class="my-list clearfix">
                         <span class="pull-left"><img src="../../assets/personal/order.png" width="16px">
                         <span class="margin-left-5">我的订单</span></span>
@@ -101,17 +101,21 @@
 // import { mapState } from 'vuex'
 export default {
   name: 'person',
-  beforeRouteEnter: (to, from, next) => {
-    console.log(this)
-    console.log('进入之前')
-    // console.log(this.$store.state)
-    next(vm => {
-      console.log(vm)
+  beforeRouteEnter (to, from, next) {
+    next(res => {
+      if (localStorage.getItem('token')) {
+        res.message = '欢迎您' + localStorage.getItem('token')
+        res.tolink = '/userinfo'
+      } else {
+        res.message = '点击登录'
+        res.tolink = '/login'
+      }
     })
   },
   data () {
     return {
-      name: '233'
+      message: '',
+      tolink: ''
     }
   },
   methods: {

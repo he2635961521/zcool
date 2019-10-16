@@ -8,9 +8,9 @@ export default new Vuex.Store({
     userinfo: []
   },
   mutations: {
-    useradd (state,user) {
-     state.userinfo.push('213')
-     console.log(state.userinfo)
+    useradd (state, user) {
+      state.userinfo.push('213')
+      console.log(state.userinfo)
     }
   },
   actions: {

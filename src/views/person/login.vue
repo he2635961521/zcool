@@ -1,6 +1,6 @@
 <template>
   <div>
-      <van-overlay :show="show" @click="show = false" duration="0.5"/>
+      <van-overlay :show="show" @click="show = false" duration=""/>
         <van-loading v-if="show" size="70px" color="black" text-size="26px" vertical class="loading">登录中...</van-loading>
     <div class="all">
       <div class="login-head">
@@ -27,7 +27,6 @@
             label="密码"
             placeholder="请输入密码"
             required
-           @click-error-message="fn1"
             :error-message="passerr"
             />
             <van-button
@@ -36,6 +35,7 @@
              color="linear-gradient(to right, #4bb0ff, #6149f6)"
              @click="tologin"
              style="margin-top:20px"
+             round
              >
              登录
              </van-button>
@@ -44,8 +44,9 @@
       <router-link to="/register">
              <van-button
             type="info"
-             color="linear-gradient(to right, , skyblue)"
-             style="margin:20px auto;"
+             color="linear-gradient(to right, pink, skyblue)"
+             style="margin:40px auto;"
+             round
              >
              还没有账号？去注册
              </van-button>
@@ -56,7 +57,7 @@
 
 <script>
 import Vue from 'vue'
-import { Button, Field, PasswordInput, NumberKeyboard, Cell, CellGroup, Loading,Overlay } from 'vant'
+import { Button, Field, PasswordInput, NumberKeyboard, Cell, CellGroup, Loading, Overlay } from 'vant'
 Vue.use(Field).use(Button).use(PasswordInput).use(NumberKeyboard).use(Cell).use(CellGroup).use(Loading).use(Overlay)
 export default {
   name: 'login',
@@ -71,17 +72,27 @@ export default {
     }
   },
   watch: {
-    username (n, o) {
-    },
-    password (n, o) {
-    }
   },
   methods: {
     fn1 () {
       console.log('???')
     },
     tologin () {
-      this.show=true
+      this.show = true
+      if (!localStorage.getItem(this.username)) {
+        this.usererr = '用户名不存在'
+        this.show = false
+        return
+      }
+      if (!(this.password === JSON.parse(localStorage.getItem(this.username)).password)) {
+        this.passerr = '密码不正确'
+        this.show = false
+        return
+      }
+
+      localStorage.setItem('token', this.username)
+      this.$router.push('person')
+      this.show = false
     }
   }
 }

@@ -33,10 +33,11 @@
             <van-button
             type="info"
              size="large"
-             color="linear-gradient(to right, #4bb0ff, #6149f6)"
+             color="linear-gradient(to right, skyblue, pink)"
              @click="reg"
              style="margin-top:20px"
              :disabled="isbut"
+             round
              >
              注册
              </van-button>
@@ -48,7 +49,7 @@
 
 <script>
 import Vue from 'vue'
-import { Button, Field, PasswordInput, NumberKeyboard, Cell, CellGroup, Loading,Overlay } from 'vant'
+import { Button, Field, PasswordInput, NumberKeyboard, Cell, CellGroup, Loading, Overlay } from 'vant'
 Vue.use(Field).use(Button).use(PasswordInput).use(NumberKeyboard).use(Cell).use(CellGroup).use(Loading).use(Overlay)
 export default {
   name: 'register',
@@ -65,36 +66,46 @@ export default {
   },
   watch: {
     username (n, o) {
-      //用户名正则，4到16位（字母，数字，下划线，减号）
-        let uPattern = /^[a-zA-Z0-9_-]{4,16}$/
-        if (!uPattern.test(n)){
-          this.usererr='用户名应该为4到16位（字母，数字，下划线，减号'
-        } else{
-           this.usererr=''
-        }
-        this.isbut=!(!this.passerr && !this.usererr)
+      // 用户名正则，4到16位（字母，数字，下划线，减号）
+      let uPattern = /^[a-zA-Z0-9_-]{4,16}$/
+      if (!uPattern.test(n)) {
+        this.usererr = '用户名应该为4到16位（字母，数字，下划线，减号'
+      } else {
+        this.usererr = ''
+      }
+      this.isbut = !(!this.passerr && !this.usererr)
     },
     password (n, o) {
-      //密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
-var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/
-   if (!pPattern.test(n)){
-          this.passerr='最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符'
-        } else{
-           this.passerr=''
-        }
-        this.isbut=!(!this.passerr && !this.usererr)
+      // 密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
+      var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/
+      if (!pPattern.test(n)) {
+        this.passerr = '最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符'
+      } else {
+        this.passerr = ''
+      }
+      this.isbut = !(!this.passerr && !this.usererr)
     }
   },
   methods: {
     fn1 () {
 
     },
-  // 注册函数
+    // 注册函数
     reg () {
-     this.show=true
-    this.$store.commit('useradd')
-
-  }
+      this.show = true
+      let userinfo = {
+        username: this.username,
+        password: this.password
+      }
+      console.log(userinfo)
+      if (localStorage.getItem(userinfo.username)) {
+        this.usererr = '用户名已存在'
+        this.show = false
+        return
+      }
+      localStorage.setItem(userinfo.username, JSON.stringify(userinfo))
+      this.$router.push('login')
+    }
   }
 }
 </script>
