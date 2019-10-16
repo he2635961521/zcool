@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import bookTicket from './views/book-ticket.vue'
-import hotMovieList from './components/hot-showing.vue'
-import comingList from './components/coming-soon.vue'
-import gpscity from './views/choice-city.vue'
+import bookTicket from './views/buy/book-ticket.vue'
+import hotMovieList from './components/buy/hot-showing.vue'
+import comingList from './components/buy/coming-soon.vue'
+import gpscity from './views/buy/choice-city.vue'
+import goodDetail from './views/buy/detail.vue'
 
-import Home from './views/Home.vue'
 const Person = () => import('./views/person/person.vue')
 const Login = () => import('./views/person/login.vue')
 Vue.use(Router)
@@ -16,10 +16,10 @@ export default new Router({
       path: '/',
       name: 'home',
       component: bookTicket,
-      redirect: '/list',
+      redirect: '/buy/list',
       children: [
         {
-          path: '/list',
+          path: '/buy/list',
           components: {
             a: hotMovieList,
             b: comingList
@@ -28,8 +28,12 @@ export default new Router({
       ]
     },
     {
-      path: '/selectCity',
+      path: '/buy/selectCity',
       component: gpscity
+    },
+    {
+      path: '/buy/detail',
+      component: goodDetail
     },
     {
       path: '/person',

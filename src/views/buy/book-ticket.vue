@@ -2,14 +2,17 @@
   <div class="bookMovie">
     <van-nav-bar title="标题" left-text="返回" left-arrow>
       <div slot="left">
-        <router-link to="/selectCity">
-          <i>选择城市</i>
+        <router-link to="/buy/selectCity">
+          <i>{{ curCity.cityName }}</i>
           <span class="iconfont icon-down"></span>
         </router-link>
       </div>
       <div slot="title" class="checkType">
         <button :class="curActive == 'film' ? 'left active':'left'" @click="filmClick">影片</button>
         <button :class="curActive == 'ciname' ? 'right active':'right'" @click="cinameClick">影院</button>
+      </div>
+      <div class="search" slot="right" v-if="curActive == 'ciname'">
+        <span class="iconfont icon-sousuo"></span>
       </div>
     </van-nav-bar>
     <component :is="curComponent"></component>
@@ -20,8 +23,8 @@
 <script>
 import Vue from 'vue'
 import { navBar } from 'vant'
-import movieList from '../components/movie-list'
-import cinameList from '../components/ciname-list'
+import movieList from '../../components/buy/movie-list'
+import cinameList from '../../components/buy/ciname-list.vue'
 Vue.use(navBar)
 
 export default {
@@ -29,6 +32,12 @@ export default {
     return {
       curComponent: movieList,
       curActive: 'film'
+    }
+  },
+
+  computed: {
+    curCity () {
+      return this.$store.state.curCity
     }
   },
 
@@ -46,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/styles/common/mixin.scss";
+@import "../../assets/styles/common/mixin.scss";
   .van-nav-bar__left{
     i{
       font-size: 16px;
@@ -72,7 +81,7 @@ export default {
       &.active{
       background: #F74444;
       color : white;
-    }
+      }
     }
     .right{
       border-right: 1px solid #F74444;
@@ -81,7 +90,7 @@ export default {
       &.active{
       background: #F74444;
       color : white;
-    }
+      }
     }
 
   }

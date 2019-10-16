@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/styles/common/mixin.scss";
+@import "../../assets/styles/common/mixin.scss";
   .choiseCity{
     width: 100%;
     height: 41px;

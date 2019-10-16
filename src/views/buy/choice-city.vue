@@ -1,14 +1,14 @@
 <template>
   <div class="GPSCity">
-    <van-nav-bar  title="选择城市"  left-text="关闭"/>
-    <!-- <div class="title">
-      GPS定位你所在的城市
-    </div> -->
-    <van-index-bar>
-      <van-index-anchor :index="cityType.toUpperCase()" v-for="cityType in indexList" :key="cityType">{{ cityType }}</van-index-anchor>
-      <van-cell title="文本" />
-      <van-cell title="文本" />
-      <van-cell title="文本" />
+    <van-nav-bar  title="选择城市"  left-text="关闭" @click-left="onClickLeft"/>
+
+    <van-index-bar :sticky="false" highlight-color="#323233">
+      <div class="van-index-anchor">GPS定位你所在的城市</div>
+      <div class="van-cell"> {{ curCity.cityName }} </div>
+      <div  v-for="type in useCityList" :key="type.code">
+        <van-index-anchor :index="type.code.toUpperCase()" >{{ type.code }}</van-index-anchor>
+        <van-cell v-for="city in type.list"  :key="city.cityId" :title="city.cityName" @click="selectCity(city)"/>
+      </div>
     </van-index-bar>
   </div>
 </template>
@@ -17,27 +17,45 @@
 import Vue from 'vue'
 import { IndexBar, IndexAnchor, Cell, NavBar } from 'vant'
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 
 Vue.use(IndexBar).use(IndexAnchor).use(Cell).use(NavBar)
 export default {
   name: 'city',
   data () {
     return {
-      indexList: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'],
       cityList: []
     }
   },
   computed: {
+
     useCityList () {
       let arr = []
       this.cityList.forEach(item => {
         if (!item.cityCode) {
-          arr.push({ code: item.cityCode, list: [] })
+          arr.push({ code: item.cityName, list: [] })
         } else {
-          arr[arr.length - 1].list.push(item.cityName)
+          arr[arr.length - 1].list.push(item)
         }
       })
       return arr
+    },
+
+    curCity () {
+      return this.$store.state.curCity
+    }
+  },
+
+  methods: {
+    ...mapMutations(['setCurCity']),
+
+    onClickLeft () {
+      this.$router.push('/buy/list')
+    },
+
+    selectCity (city) {
+      this.setCurCity(city)
+      this.$router.push('/buy/list')
     }
   },
 
@@ -97,10 +115,15 @@ export default {
         color: white;
         display: flex;
         flex-direction: column;
-        transform: translateY(-55%);
+        transform: translateY(-50%);
+        margin-right:15px;
+        border-radius:5px;
         span{
-          padding: 2px 10px;
+          padding: 3px 10px;
           font-size: 16px;
+        }
+        .van-index-anchor{
+          background:red;
         }
       }
     }
