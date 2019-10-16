@@ -1,11 +1,11 @@
 <template>
   <div>
       <van-overlay :show="show" @click="show = false" duration="0.5"/>
-        <van-loading v-if="show" size="70px" color="black" text-size="26px" vertical class="loading">登录中...</van-loading>
+        <van-loading v-if="show" size="70px" color="black" text-size="26px" vertical class="loading">注册中...</van-loading>
     <div class="all">
       <div class="login-head">
         <a href="javascript:history.back(-1)" class="iconfont icon-xiangzuo"></a>
-        <span>登录</span>
+        <span>注册</span>
       </div>
       <div class="logo">
         <img src="../../assets/personal/logo.jpg" alt="">
@@ -34,22 +34,14 @@
             type="info"
              size="large"
              color="linear-gradient(to right, #4bb0ff, #6149f6)"
-             @click="tologin"
+             @click="reg"
              style="margin-top:20px"
+             :disabled="isbut"
              >
-             登录
+             注册
              </van-button>
           </van-cell-group>
       </div>
-      <router-link to="/register">
-             <van-button
-            type="info"
-             color="linear-gradient(to right, , skyblue)"
-             style="margin:20px auto;"
-             >
-             还没有账号？去注册
-             </van-button>
-      </router-link>
     </div>
   </div>
 </template>
@@ -59,7 +51,7 @@ import Vue from 'vue'
 import { Button, Field, PasswordInput, NumberKeyboard, Cell, CellGroup, Loading,Overlay } from 'vant'
 Vue.use(Field).use(Button).use(PasswordInput).use(NumberKeyboard).use(Cell).use(CellGroup).use(Loading).use(Overlay)
 export default {
-  name: 'login',
+  name: 'register',
   data () {
     return {
       iserror: true,
@@ -67,22 +59,42 @@ export default {
       username: '',
       passerr: '',
       usererr: '',
-      show: false
+      show: false,
+      isbut: true
     }
   },
   watch: {
     username (n, o) {
+      //用户名正则，4到16位（字母，数字，下划线，减号）
+        let uPattern = /^[a-zA-Z0-9_-]{4,16}$/
+        if (!uPattern.test(n)){
+          this.usererr='用户名应该为4到16位（字母，数字，下划线，减号'
+        } else{
+           this.usererr=''
+        }
+        this.isbut=!(!this.passerr && !this.usererr)
     },
     password (n, o) {
+      //密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
+var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/
+   if (!pPattern.test(n)){
+          this.passerr='最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符'
+        } else{
+           this.passerr=''
+        }
+        this.isbut=!(!this.passerr && !this.usererr)
     }
   },
   methods: {
     fn1 () {
-      console.log('???')
+
     },
-    tologin () {
-      this.show=true
-    }
+  // 注册函数
+    reg () {
+     this.show=true
+    this.$store.commit('useradd')
+
+  }
   }
 }
 </script>
@@ -113,7 +125,7 @@ export default {
       padding: auto;
     }
   }
-    .loading{
+  .loading{
     position:fixed;
     top: 40%;
     left:40%;

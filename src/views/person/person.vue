@@ -26,6 +26,7 @@
             <div class="list">
               <ul>
                 <li>
+                  <router-link to="/order">
                     <div class="my-list clearfix">
                         <span class="pull-left"><img src="../../assets/personal/order.png" width="16px">
                         <span class="margin-left-5">我的订单</span></span>
@@ -33,6 +34,7 @@
                            <i class="iconfont icon-xiangyou"></i>
                         </span>
                     </div>
+                  </router-link>
                 </li>
                 <li>
                     <div class="my-list clearfix">
@@ -154,7 +156,7 @@ export default {
     padding: 20px 10px;
     background-color: #fff;
     position: relative;
-    width: 533px;
+    width: 100%;
     height: 55px;
     a{
       display: inline !important;
@@ -177,7 +179,7 @@ export default {
       }
       }
           p{
-    width: 42.98%;
+   width: 70%;
     height: 56px;
     line-height: 56px;
     padding-left: 10px;
@@ -189,10 +191,9 @@ export default {
 }
     }
     .past{
-          width: 10.32%;
-    padding:15px 0;
+    padding:18px 10px;
     text-align: right;
-    float: left;
+    float: right;
     color: #000;
     }
     }

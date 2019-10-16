@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 const Person = () => import('./views/person/person.vue')
 const Login = () => import('./views/person/login.vue')
+const Order = () => import('./views/person/order.vue')
+const Register = () => import('./views/person/register.vue')
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +23,16 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/order',
+      name: 'order',
+      component: Order
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
     }
     // {
     //   path: '/about',

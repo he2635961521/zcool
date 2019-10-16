@@ -5,10 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    name: '大厦'
+    userinfo: []
   },
   mutations: {
-
+    useradd (state,user) {
+     state.userinfo.push('213')
+     console.log(state.userinfo)
+    }
   },
   actions: {
 
