@@ -1,7 +1,6 @@
 //引入其他基本 css
 @import "./common/reset.scss";
 
-html,
-body {
-  height: 100%;
-}
+html,body{
+  overflow-x:none;overflow-y:auto;
+  }

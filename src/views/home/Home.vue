@@ -24,7 +24,6 @@
 
 <style lang="scss">
 // @import '../../assets/styles/common/mixins.scss';
-
 .page-home{
     height:100%;
     display: flex;
