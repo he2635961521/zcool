@@ -6,15 +6,15 @@
     <router-view></router-view>
 
     <ul class="navbar">
-      <router-link tag="li" to="/films">
+      <router-link tag="li" to="/hdh/films">
         <i class="iconfont icon-dianying"></i>
         <span>看片</span>
       </router-link>
-      <router-link tag="li" to="/cinemas">
+      <router-link tag="li" to="/hdh/cinemas">
         <i class="iconfont icon-goupiao1"></i>
         <span>购票</span>
       </router-link>
-      <router-link tag="li" to="/center">
+      <router-link tag="li" to="/hdh/center">
         <i class="iconfont icon-yonghu-copy"></i>
         <span>我的</span>
       </router-link>

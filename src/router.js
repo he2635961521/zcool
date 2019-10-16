@@ -14,20 +14,20 @@ export default new Router({
       component:Home,
       children: [
         {
-          path: 'films',
+          path: 'hdh/films',
           component: Films
         },
         {
-          path: 'cinemas',
+          path: 'hdh/cinemas',
           component: Cinemas
         },
         {
-          path: 'center',
+          path: 'hdh/center',
           component: Center
         },
         {
           path: '',
-          redirect: '/films'
+          redirect: '/hdh/films'
         }
       ]
     }

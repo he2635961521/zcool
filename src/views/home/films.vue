@@ -29,23 +29,22 @@
       </div>
     </div>
 
-
-
     <FilmList v-if="curFilmType == '0'"/>
-    <video v-if="curFilmType == '3'" />
+    <Video v-if="curFilmType == '3'" />
 
   </div>
 </template>
 
 <script>
 import FilmList from "../../components/hdh/filmList";
-import video from "../../components/hdh/video";
+import Video from "../../components/hdh/video";
 
 export default {
   name: "Films",
 
   components: {
-    FilmList
+    FilmList,
+    Video
   },
 
   data() {
