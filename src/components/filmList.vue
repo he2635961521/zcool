@@ -3,26 +3,8 @@
     <!-- 第一个轮播图 -->
     <div class="swiper-container1">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="http://movie.miguvideo.com/publish/i_www/image/70/734/308.jpg" />
-        </div>
-        <div class="swiper-slide">
-          <img src="http://movie.miguvideo.com/publish/i_www/image/70/410/809.jpg" />
-        </div>
-        <div class="swiper-slide">
-          <img src="http://movie.miguvideo.com/publish/i_www/image/70/753/912.jpg" />
-        </div>
-        <div class="swiper-slide">
-          <img src="http://movie.miguvideo.com/publish/i_www/image/70/755/53.jpg" />
-        </div>
-        <div class="swiper-slide">
-          <img src="http://movie.miguvideo.com/publish/i_www/image/70/751/651.jpg" />
-        </div>
-        <div class="swiper-slide">
-          <img src="http://movie.miguvideo.com/publish/i_www/image/70/756/202.jpg" />
-        </div>
-        <div class="swiper-slide">
-          <img src="http://movie.miguvideo.com/publish/i_www/image/70/747/433.jpg" />
+        <div class="swiper-slide" v-for="(film,index) in film1" :key="index">
+          <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
         </div>
       </div>
       <!-- Add Pagination -->
@@ -37,95 +19,11 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <!-- 单个轮播图 -->
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/755/851.jpg" />
+          <div class="swiper-slide" v-for="(film,index) in film2" :key="index">
+            <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
             <div class="content-intro">
-              <p class="font-14 grey">五月天人生无限公司</p>
-              <p class="font-13 light-grey">400万乐迷主演</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/751/725.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">阿拉丁</p>
-              <p class="font-13 light-grey">童年神话真人版</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/747/857.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">哥斯拉2：怪兽之王</p>
-              <p class="font-13 light-grey">史诗级动作冒险巨制</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/751/726.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">龙珠超：布罗利</p>
-              <p class="font-13 light-grey">龙珠超剧场版</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/755/859.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">大侦探皮卡丘</p>
-              <p class="font-13 light-grey">宠物小精灵真人版</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/747/859.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">一条狗的使命2</p>
-              <p class="font-13 light-grey">原班人马打造</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/734/459.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">何以为家</p>
-              <p class="font-13 light-grey">奥斯卡提名外语片</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/735/834.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">一个母亲的复仇</p>
-              <p class="font-13 light-grey">德里黑公交案改编</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/755/882.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">X战警：黑凤凰</p>
-              <p class="font-13 light-grey">次代X战警谢幕表演</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/755/885.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">云端之上</p>
-              <p class="font-13 light-grey">小鞋子导演新作</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/755/886.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">大大哒</p>
-              <p class="font-13 light-grey">马来西亚国宝级导演</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/755/891.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey">真爱百分百</p>
-              <p class="font-13 light-grey">真爱不在意外表</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="http://movie.miguvideo.com/publish/i_www/image/70/379/192.jpg" />
-            <div class="content-intro">
-              <p class="font-14 grey"></p>
-              <p class="font-13 light-grey"></p>
+              <p class="font-14 grey">{{film.name}}</p>
+              <p class="font-13 light-grey">{{film.LONG_NAME}}</p>
             </div>
           </div>
         </div>
@@ -137,42 +35,12 @@
       <div class="module-name grey font-16">精彩活动</div>
       <div class="swiper-container2">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
+          <div class="swiper-slide" v-for="(film,index) in film3" :key="index">
             <div class="content-pic">
-              <img src="http://movie.miguvideo.com/publish/i_www/image/70/738/825.gif" />
+              <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
               <img
                 class="status"
                 src="http://movie.miguvideo.com/lovev/miguMovie/images/icon/status-keepOn.png"
-              />
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="content-pic">
-              <img src="http://movie.miguvideo.com/publish/i_www/image/70/726/812.gif" />
-              <img
-                class="status"
-                src="http://movie.miguvideo.com/lovev/miguMovie/images/icon/status-keepOn.png"
-                alt
-              />
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="content-pic">
-              <img src="http://movie.miguvideo.com/publish/i_www/image/70/496/903.gif" />
-              <img
-                class="status"
-                src="http://movie.miguvideo.com/lovev/miguMovie/images/icon/status-keepOn.png"
-                alt
-              />
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="content-pic">
-              <img src="http://movie.miguvideo.com/publish/i_www/image/70/676/884.gif" />
-              <img
-                class="status"
-                src="http://movie.miguvideo.com/lovev/miguMovie/images/icon/status-keepOn.png"
-                alt
               />
             </div>
           </div>
@@ -189,10 +57,15 @@ import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import axios from "axios";
 export default {
-  state: {
-    filmList: []
-  },
+  name: "hdh",
 
+  data() {
+    return {
+      film1: [],
+      film2: [],
+      film3: []
+    };
+  },
   created() {
     axios
       .post(
@@ -217,6 +90,11 @@ export default {
       )
       .then(response => {
         this.filmList = response.data;
+        this.film1 = this.filmList[0].list;
+        this.film2 = this.filmList[1].list;
+        this.film3 = this.filmList[2].list;
+        console.log(this.film1.length);
+
         //if (result.status === 0) {
         // commit('setFilmList', result.data.films)
         // 要先仓库中 filmList 的数据，与请求得来的数据做一个拼接的操作
@@ -238,47 +116,53 @@ export default {
 
   mounted() {
     // 第二个轮播的js设置
-    new Swiper(".swiper-container", {
-      slidesPerView: 3.2,
-      spaceBetween: 0
-    });
+    setTimeout(() => {
+      new Swiper(".swiper-container", {
+        slidesPerView: 3.2,
+        spaceBetween: 0
+      });
+    }, 1000);
 
     // 第一个轮播图的js设置
-    new Swiper(".swiper-container1", {
-      effect: "coverflow",
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: "auto",
-      coverflowEffect: {
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: true
-      },
-      loop: true,
-      speed: 300,
-      autoplay: {
-        disableOnInteraction: false,
-        delay: 2000
-      },
-      pagination: {
-        el: ".swiper-pagination1"
-      }
-    });
+    setTimeout(() => {
+      new Swiper(".swiper-container1", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true
+        },
+        loop: true,
+        speed: 300,
+        autoplay: {
+          disableOnInteraction: false,
+          delay: 2000
+        },
+        pagination: {
+          el: ".swiper-pagination1"
+        }
+      });
+    }, 1000);
 
     // 第三个轮播图的js设置
-    new Swiper(".swiper-container2", {
-      pagination: {
-        el: ".swiper-pagination2",
-        type: "progressbar"
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      },
-      loop: true
-    });
+    setTimeout(() => {
+      new Swiper(".swiper-container2", {
+        pagination: {
+          el: ".swiper-pagination2",
+          type: "progressbar"
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        },
+        loop: true
+      });
+    }, 1000);
   }
 };
 </script>
