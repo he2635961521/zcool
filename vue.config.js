@@ -4,7 +4,7 @@ module.exports = {
       '/api': {
         target: 'http://movie.miguvideo.com',
         pathRewrite: {
-          "/api": ""
+          '/api': ''
         },
         changeOrigin: true
       }

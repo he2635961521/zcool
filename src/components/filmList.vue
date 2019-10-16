@@ -185,42 +185,42 @@
 </template>
 
 <script>
-import Swiper from "swiper";
-import "swiper/css/swiper.min.css";
-import axios from "axios";
+import Swiper from 'swiper'
+import 'swiper/css/swiper.min.css'
+import axios from 'axios'
 export default {
   state: {
     filmList: []
   },
 
-  created() {
+  created () {
     axios
       .post(
-        "/migu/lovev/miguMovie/data/seeFilmData.jsp",
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
           nodeId: 70022794,
           pagesize: 3,
           pageidx: 1
         },
         {
-          transformRequest(data) {
-            //console.log(data);
+          transformRequest (data) {
+            // console.log(data);
             // {key1: 'value1', key2: 'value2', key3: 'value3'}
             // 'key1=value1&key2=value2&key3=value3'
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
       .then(response => {
-        this.filmList = response.data;
-        //if (result.status === 0) {
+        this.filmList = response.data
+        // if (result.status === 0) {
         // commit('setFilmList', result.data.films)
         // 要先仓库中 filmList 的数据，与请求得来的数据做一个拼接的操作
-        //commit("setFilmList", state.filmList.concat(result.data.films));
+        // commit("setFilmList", state.filmList.concat(result.data.films));
         // commit('setFilmList', state.filmList.push(result.data.films))
         // let filmList = state.filmList
         // filmList.push(...result.data.films)
@@ -232,23 +232,24 @@ export default {
         // if (payload.callback) {
         //   payload.callback();
         // }
-        //}
-      });
+        // }
+      })
   },
 
-  mounted() {
+  mounted () {
     // 第二个轮播的js设置
-    new Swiper(".swiper-container", {
+    /* eslint-disable */
+    new Swiper('.swiper-container', {
       slidesPerView: 3.2,
       spaceBetween: 0
-    });
+    })
 
     // 第一个轮播图的js设置
-    new Swiper(".swiper-container1", {
-      effect: "coverflow",
+    new Swiper('.swiper-container1', {
+      effect: 'coverflow',
       grabCursor: true,
       centeredSlides: true,
-      slidesPerView: "auto",
+      slidesPerView: 'auto',
       coverflowEffect: {
         rotate: 50,
         stretch: 0,
@@ -263,24 +264,24 @@ export default {
         delay: 2000
       },
       pagination: {
-        el: ".swiper-pagination1"
+        el: '.swiper-pagination1'
       }
-    });
+    })
 
     // 第三个轮播图的js设置
-    new Swiper(".swiper-container2", {
+    new Swiper('.swiper-container2', {
       pagination: {
-        el: ".swiper-pagination2",
-        type: "progressbar"
+        el: '.swiper-pagination2',
+        type: 'progressbar'
       },
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
       },
       loop: true
-    });
+    })
   }
-};
+}
 </script>
 
 <style lang="scss">
@@ -349,7 +350,7 @@ export default {
 // 第二个轮播样式
 .swiper-container {
   .swiper-slide {
-    height: 229px;
+    height: 100%;
     font-size: 18px;
     background: #fff;
 
@@ -363,7 +364,7 @@ export default {
     }
     img {
       width: 100%;
-      height: 179px;
+      height: 100%;
       position: relative;
       top: 0;
     }

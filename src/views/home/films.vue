@@ -33,34 +33,34 @@
 </template>
 
 <script>
-    import FilmList from '../../components/filmList'
-    import FreeWatch from '../../components/freeWatch'
-    import FilmMenu from '../../components/filmMenu'
+import FilmList from '../../components/filmList'
+import FreeWatch from '../../components//wmy/freeWatch'
+import FilmMenu from '../../components/wmy/filmMenu'
 
-    export default{
-        name: 'Films',
+export default {
+  name: 'Films',
 
-        components: {
-            FilmList,
-            FreeWatch,
-            FilmMenu
-        },
+  components: {
+    FilmList,
+    FreeWatch,
+    FilmMenu
+  },
 
-        data () {
-            return {
-                curFilmType: '0' //当前的影片类型
-            }
-        },
+  data () {
+    return {
+      curFilmType: '0' // 当前的影片类型
+    }
+  },
 
-        methods : {
-            /**
+  methods: {
+    /**
              * 切换当前的影片类型
              */
-            chgFilmType (type) {
-                this.curFilmType = type
-            }
-        }
+    chgFilmType (type) {
+      this.curFilmType = type
     }
+  }
+}
 </script>
 
 <style lang="scss">
