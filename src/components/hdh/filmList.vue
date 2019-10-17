@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- 第一个轮播图 -->
-    <div class="swiper-container1">
+    <div class="swiper-container swiper-container1" ref="swiper1">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(film,index) in film1" :key="index">
           <!-- `/hdh/filmlbdetail/${film.goodsUrl}` -->
-          <router-link :to="`/hdh/filmlbdetail/${realUrl(film.goodsUrl)}`">
+          <router-link :to="`/hdh/filmlbdetail/${realUrl(film.goodsUrl)}`" @click="fn1">
             <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
           </router-link>
         </div>
@@ -19,7 +19,7 @@
     <div class="module">
       <!-- 售票标栏,module-name引入了背景图片 -->
       <div class="module-name grey font-16">正在售票</div>
-      <div class="swiper-container">
+      <div class="swiper-container" ref="swiper2">
         <div class="swiper-wrapper">
           <!-- 单个轮播图 -->
           <div class="swiper-slide" v-for="(film,index) in film2" :key="index">
@@ -36,7 +36,7 @@
     <!-- 第三个轮播图 -->
     <div class="module">
       <div class="module-name grey font-16">精彩活动</div>
-      <div class="swiper-container2">
+      <div class="swiper-container swiper-container2" ref="swiper3">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(film,index) in film3" :key="index">
             <div class="content-pic">
@@ -120,7 +120,7 @@ export default {
   mounted() {
     // 第二个轮播的js设置
     setTimeout(() => {
-      new Swiper(".swiper-container", {
+      new Swiper(this.$refs.swiper2, {
         slidesPerView: 3.2,
         spaceBetween: 0
       });
@@ -128,7 +128,7 @@ export default {
 
     // 第一个轮播图的js设置
     setTimeout(() => {
-      new Swiper(".swiper-container1", {
+      new Swiper(this.$refs.swiper1, {
         effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,
@@ -154,7 +154,7 @@ export default {
 
     // 第三个轮播图的js设置
     setTimeout(() => {
-      new Swiper(".swiper-container2", {
+      new Swiper(this.$refs.swiper3, {
         pagination: {
           el: ".swiper-pagination2",
           type: "progressbar"
@@ -170,6 +170,9 @@ export default {
   methods : {
     realUrl(str){
       return str.split('=')[1]
+    },
+    fn1(){
+
     }
   }
 };
