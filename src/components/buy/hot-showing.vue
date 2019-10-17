@@ -1,7 +1,7 @@
 <template>
   <div class="hotShowing">
     <ul>
-      <li v-for="movie in hotMovieList" :key="movie.filmId">
+      <li v-for="movie in hotMovieList" :key="movie.filmId" @click="toDetail(movie.pomsContId)">
         <div class="movie-left">
           <img :src="`${movie.h5pics.highResolutionV}`" alt="">
         </div>
@@ -16,8 +16,8 @@
             主演：{{ actorToS(movie.actor) }}
           </div>
         </div>
-        <div class="buyTiket">
-            <img src="http://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/images/icon/oreder.png" alt="">
+        <div class="buyTiket" >
+            <img @click.stop="buyTicket(movie.pomsContId)" src="http://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/images/icon/oreder.png" alt="">
         </div>
       </li>
     </ul>
@@ -43,6 +43,12 @@ export default {
   methods: {
     actorToS (str) {
       return str.split(' ').join('/')
+    },
+    toDetail (id) {
+      this.$router.push('/buy/detail/' + id)
+    },
+    buyTicket (id) {
+
     }
   },
 

@@ -27,3 +27,18 @@
     transform: translateY(0.5);
   }
 }
+
+@mixin border-left {
+  position: relative;
+
+  &::after{
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 50%;
+    top: 50%;
+    left: 0;
+    background: #F64A5F;
+    transform: translateY(-50%);
+  }
+}

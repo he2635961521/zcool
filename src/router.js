@@ -32,7 +32,7 @@ export default new Router({
       component: gpscity
     },
     {
-      path: '/buy/detail',
+      path: '/buy/detail/:id',
       component: goodDetail
     },
     {

@@ -2,7 +2,7 @@
   <div class="hotShowing">
     <ul v-for="obj in useComingList" :key="obj.date">
       <p class="date-tile"> {{ timeFormat(obj.date) }} </p>
-      <li v-for="movie in obj.list" :key="movie.filmId">
+      <li v-for="movie in obj.list" :key="movie.filmId" @click="toDetail(movie.pomsContId)">
         <div class="movie-left">
           <img :src="`${movie.h5pics.highResolutionV}`" alt="">
         </div>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="buyTiket">
-            <span :class="movie.isPreSale != '1' ? 'want' : ''">{{ movie.isPreSale != '1' ? '想看' : '预售' }}</span>
+            <span :class="movie.isPreSale != '1' ? 'want' : ''" @click.stop="buyTicket(movie.pomsContId)">{{ movie.isPreSale != '1' ? '想看' : '预售' }}</span>
         </div>
       </li>
     </ul>
@@ -79,7 +79,16 @@ export default {
         week = '六'
       }
       return `${yue}月${tian}日  周${week}`
+    },
+
+    toDetail (id) {
+      this.$router.push('/buy/detail/' + id)
+    },
+
+    buyTicket (id) {
+
     }
+
   },
 
   created () {
