@@ -33,7 +33,7 @@
         <div class="module-name">票房过亿的电影</div>
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
-            <li v-for="(blmovies,index)  in Blmovies" :key="index" style="padding-right:3px">
+            <li v-for="(blmovies,index)  in Blmovies" :key="index" style="padding-right:6px">
               <a href>
                 <div class="pic">
                   <img
@@ -57,7 +57,7 @@
         <div class="module-name">豆瓣评分8.0+的电影</div>
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
-            <li v-for="(douban,index)  in doubanFilm" :key="index" style="padding-right:3px">
+            <li v-for="(douban,index)  in doubanFilm" :key="index" style="padding-right:6px">
               <a href>
                 <div class="pic">
                   <img
@@ -81,7 +81,7 @@
         <div class="module-name">咪咕独播</div>
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
-            <li v-for="(migudubo,index)  in migidubo" :key="index" style="padding-right:3px">
+            <li v-for="(migudubo,index)  in migidubo" :key="index" style="padding-right:6px">
               <a href>
                 <div class="pic">
                   <img
@@ -105,7 +105,7 @@
         <div class="module-name">好莱坞大片</div>
         <div class="hotFilmList">
           <div class="Bigpic">
-            <img :src="`http://movie.miguvideo.com/publish/i_www/${holiwoodFilms0.imgSrc}`" alt />
+            <img v-if="holiwoodFilms0.imgSrc" :src="`http://movie.miguvideo.com/publish/i_www/${holiwoodFilms0.imgSrc}`" alt />
             <p class="pionts">{{holiwoodFilms0.miguScore}}</p>
           </div>
           <p class="hoodliwood1">{{holiwoodFilms0.name}}</p>
@@ -143,13 +143,13 @@
         <div class="module-name">午夜惊悚</div>
         <div class="hotFilmList">
           <div class="Bigpic">
-            <img :src="`http://movie.miguvideo.com/publish/i_www/${scarefilm0.imgSrc}`" alt />
+            <img v-if="scarefilm0.imgSrc" :src="`http://movie.miguvideo.com/publish/i_www/${scarefilm0.imgSrc}`" alt />
             <p class="pionts">{{scarefilm0.miguScore}}</p>
           </div>
           <p class="hoodliwood1">{{scarefilm0.name}}</p>
           <p class="hoodliwood2">{{scarefilm0.LONG_NAME}}</p>
-          <ul>
-            <li v-for="(scarefilmmm,index)  in scarefilm1" :key="index">
+          <ul style="flex-wrap:nowrap;overflow-y:hidden">
+            <li v-for="(scarefilmmm,index)  in scarefilm1" :key="index" style="padding-right:6px">
               <a href>
                 <div class="pic">
                   <img :src="`http://movie.miguvideo.com/${scarefilmmm.imgSrcV}`" alt />
