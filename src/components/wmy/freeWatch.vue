@@ -173,44 +173,44 @@
             </li>
           </ul>
         </div>
-      
+
     </div>
     </div>
     </div>
 </template>
 
 <script>
-import axios from "axios";
-import BScroll from "better-scroll"
+import axios from 'axios'
+import BScroll from 'better-scroll'
 
 export default {
-  name: "freeWatch",
-  data() {
+  name: 'freeWatch',
+  data () {
     return {
       loopPic: [],
       freeWatchFilm: [],
       Blmovies: [],
-      BlmoviesFilter:[],
+      BlmoviesFilter: [],
 
       doubanFilm: [],
-      filterFilm:[],
+      filterFilm: [],
       migidubo: [],
 
       holiwoodFilms0: [],
-      filterHooliwoodFilm:[],
+      filterHooliwoodFilm: [],
       holiwoodFilms1: [],
 
       scarefilm0: [],
-      filterScareFilm:[],
+      filterScareFilm: [],
       scarefilm1: []
-    };
+    }
   },
 
-  created() {
+  created () {
     // 豆瓣评分前面的电影
     axios
       .post(
-        "/api/lovev/miguMovie/data/seeFilmData.jsp",
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
           nodeId: 70022795,
           pagesize: 3,
@@ -218,24 +218,24 @@ export default {
         },
         {
           transformRequest: data => {
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
       .then(response => {
-        this.loopPic = response.data[0].list;
-        this.freeWatchFilm = response.data[1].list;
-        this.BlmoviesFilter =response.data[2].list;
-        this.Blmovies = this.BlmoviesFilter.filter(item =>item.imgSrcV)
-      });
+        this.loopPic = response.data[0].list
+        this.freeWatchFilm = response.data[1].list
+        this.BlmoviesFilter = response.data[2].list
+        this.Blmovies = this.BlmoviesFilter.filter(item => item.imgSrcV)
+      })
     // 豆瓣评分往后的电影
     axios
       .post(
-        "/api/lovev/miguMovie/data/seeFilmData.jsp",
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
           nodeId: 70022795,
           pagesize: 3,
@@ -243,23 +243,23 @@ export default {
         },
         {
           transformRequest: data => {
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
-      .then(response => {       
-        this.migidubo = response.data[1].list;
-        this.filterFilm=response.data[0].list;
-        this.doubanFilm = this.filterFilm.filter(item =>item.imgSrcV);
-      });
+      .then(response => {
+        this.migidubo = response.data[1].list
+        this.filterFilm = response.data[0].list
+        this.doubanFilm = this.filterFilm.filter(item => item.imgSrcV)
+      })
     // 好莱坞大片
     axios
       .post(
-        "/api/lovev/miguMovie/data/seeFilmData.jsp",
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
           nodeId: 70022795,
           pagesize: 3,
@@ -267,23 +267,23 @@ export default {
         },
         {
           transformRequest: data => {
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
       .then(response => {
-        this.holiwoodFilms0 = response.data[1].list[0].picList[0];
-        this.filterHooliwoodFilm=response.data[1].list[1].picList;
-        this.holiwoodFilms1 = this.filterHooliwoodFilm.filter(item =>item.imgSrcV);
-      });
+        this.holiwoodFilms0 = response.data[1].list[0].picList[0]
+        this.filterHooliwoodFilm = response.data[1].list[1].picList
+        this.holiwoodFilms1 = this.filterHooliwoodFilm.filter(item => item.imgSrcV)
+      })
     // 午夜惊悚
     axios
       .post(
-        "/api/lovev/miguMovie/data/seeFilmData.jsp",
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
           nodeId: 70022795,
           pagesize: 3,
@@ -291,28 +291,28 @@ export default {
         },
         {
           transformRequest: data => {
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
       .then(response => {
-        this.scarefilm0 = response.data[1].list[0].picList[0];
-        this.filterScareFilm=response.data[1].list[1].picList
-        this.scarefilm1 = this.filterScareFilm.filter(item =>item.imgSrcV);
-      });
+        this.scarefilm0 = response.data[1].list[0].picList[0]
+        this.filterScareFilm = response.data[1].list[1].picList
+        this.scarefilm1 = this.filterScareFilm.filter(item => item.imgSrcV)
+      })
   },
-  mounted() {
-      let bs = new BScroll(".bscroll", {
-      probeType:3,
+  mounted () {
+    let bs = new BScroll('.bscroll', {
+      probeType: 3,
       click: true,
       eventPassthrough: 'horizontal',
-      pullUpLoad:true // 开启上拉加载
-    });
-    bs.on('pullingUp',() =>{
+      pullUpLoad: true // 开启上拉加载
+    })
+    bs.on('pullingUp', () => {
       console.log(123)
     })
   }

@@ -161,7 +161,7 @@
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 import axios from 'axios'
-import BScroll from "better-scroll"
+import BScroll from 'better-scroll'
 
 export default {
   name: 'filmMenu',
@@ -174,7 +174,7 @@ export default {
       name: {},
 
       women: [],
-      filterWomen:[],
+      filterWomen: [],
       womenname: {},
 
       gongqijun: [],
@@ -183,9 +183,9 @@ export default {
       manandwolf: [],
       manandwolfname: {},
 
-      marvelFilmName:[],
-      marvelFilm:[],
-      marvelFilmFilter:[]
+      marvelFilmName: [],
+      marvelFilm: [],
+      marvelFilmFilter: []
     }
   },
 
@@ -234,8 +234,8 @@ export default {
       )
       .then(response => {
         this.name = response.data[1]
-        this.filterWomen= response.data[1].list
-        this.women =this.filterWomen.filter(item =>item.imgSrcH)
+        this.filterWomen = response.data[1].list
+        this.women = this.filterWomen.filter(item => item.imgSrcH)
       })
 
     // 宫崎骏
@@ -285,8 +285,8 @@ export default {
         this.manandwolf = response.data[1].list
       })
 
-      // 漫威电影
-     axios
+    // 漫威电影
+    axios
       .post(
         '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
@@ -307,10 +307,9 @@ export default {
       .then(response => {
         this.marvelFilmName = response.data[2]
         this.marvelFilmFilter = response.data[2].list
-        this.marvelFilm = this.marvelFilmFilter.filter(item =>item.imgSrcV)
+        this.marvelFilm = this.marvelFilmFilter.filter(item => item.imgSrcV)
       })
   },
- 
 
   mounted () {
     setTimeout(() => {
