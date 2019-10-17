@@ -4,7 +4,10 @@
     <div class="swiper-container1">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(film,index) in film1" :key="index">
-          <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
+          <!-- `/hdh/filmlbdetail/${film.goodsUrl}` -->
+          <router-link :to="`/hdh/filmlbdetail/${realUrl(film.goodsUrl)}`">
+            <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
+          </router-link>
         </div>
       </div>
       <!-- Add Pagination -->
@@ -163,6 +166,11 @@ export default {
         loop: true
       });
     }, 1000);
+  },
+  methods : {
+    realUrl(str){
+      return str.split('=')[1]
+    }
   }
 };
 </script>

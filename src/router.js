@@ -4,10 +4,11 @@ import Home from './views/home/hdh/Home.vue'
 import Films from './views/home/hdh/films.vue'
 import Cinemas from './views/home/hdh/cinemas.vue'
 import Center from './views/home/hdh/center.vue'
+import Dlbdt from './views/home/hdh/filmslbdetail.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -28,8 +29,15 @@ export default new Router({
         {
           path: '',
           redirect: '/hdh/films'
-        }
+        },
       ]
+    },
+    {
+      path: '/hdh/filmlbdetail/:id',
+      component: Dlbdt
     }
+
   ]
 })
+
+export default router
