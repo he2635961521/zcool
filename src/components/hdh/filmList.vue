@@ -5,7 +5,7 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(film,index) in film1" :key="index">
           <!-- `/hdh/filmlbdetail/${film.goodsUrl}` -->
-          <router-link :to="`/hdh/filmlbdetail/${realUrl(film.goodsUrl)}`" @click="fn1">
+          <router-link :to="`${film.wapUrl}`">
             <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
           </router-link>
         </div>
@@ -168,12 +168,14 @@ export default {
     }, 1000);
   },
   methods : {
-    realUrl(str){
-      return str.split('=')[1]
-    },
-    fn1(){
+    // realUrl(str){
+    //   return str.split('=')[1]
+    // },
+    // fn1(){
+    //   if(this.film1.time){
 
-    }
+    //   }
+    // }
   }
 };
 </script>
