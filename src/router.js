@@ -5,6 +5,7 @@ import Films from './views/home/hdh/films.vue'
 import Cinemas from './views/home/hdh/cinemas.vue'
 import Center from './views/home/hdh/center.vue'
 import Dlbdt from './views/home/hdh/filmslbdetailnt.vue'
+import Dlbdttwo from './views/home/hdh/filmlbdetailtwo.vue'
 
 Vue.use(Router)
 
@@ -35,7 +36,12 @@ const router = new Router({
     {
       path: '/hdh/filmlbdetailnt/:id',
       component: Dlbdt
+    },
+    {
+      path: '/hdh/filmlbdetailtwo',
+      component: Dlbdttwo
     }
+
 
   ]
 })

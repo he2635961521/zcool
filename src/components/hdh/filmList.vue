@@ -5,9 +5,9 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(film,index) in film1" :key="index">
           <!-- `/hdh/filmlbdetail/${film.goodsUrl}` -->
-          <router-link :to="`${film.wapUrl}`">
+          <a :href="`${film.wapUrl}`">
             <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
-          </router-link>
+          </a>
         </div>
       </div>
       <!-- Add Pagination -->
@@ -40,11 +40,13 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(film,index) in film3" :key="index">
             <div class="content-pic">
-              <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
-              <img
-                class="status"
-                src="http://movie.miguvideo.com/lovev/miguMovie/images/icon/status-keepOn.png"
-              />
+              <a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.cmvideo.migumovie">
+                <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
+                <img
+                  class="status"
+                  src="http://movie.miguvideo.com/lovev/miguMovie/images/icon/status-keepOn.png"
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -97,23 +99,6 @@ export default {
         this.film2 = this.filmList[1].list;
         this.film3 = this.filmList[2].list;
         console.log(this.film1.length);
-
-        //if (result.status === 0) {
-        // commit('setFilmList', result.data.films)
-        // 要先仓库中 filmList 的数据，与请求得来的数据做一个拼接的操作
-        //commit("setFilmList", state.filmList.concat(result.data.films));
-        // commit('setFilmList', state.filmList.push(result.data.films))
-        // let filmList = state.filmList
-        // filmList.push(...result.data.films)
-        // commit('setFilmList', filmList)
-
-        // 执行传递过来的 payload.callback 这个回调函数
-        // payload.callback && payload.callback()
-
-        // if (payload.callback) {
-        //   payload.callback();
-        // }
-        //}
       });
   },
 
@@ -167,13 +152,12 @@ export default {
       });
     }, 1000);
   },
-  methods : {
+  methods: {
     // realUrl(str){
     //   return str.split('=')[1]
     // },
     // fn1(){
     //   if(this.film1.time){
-
     //   }
     // }
   }
