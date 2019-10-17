@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home/Home.vue'
-import Films from './views/home/films.vue'
+// import Films from './views/home/films.vue'
 import Cinemas from './views/home/cinemas.vue'
 import Center from './views/home/center.vue'
 
@@ -14,8 +14,9 @@ export default new Router({
       component: Home,
       children: [
         {
+          // 路由懒加载
           path: 'films',
-          component: Films
+          component: () => import('./views/home/films.vue')
         },
         {
           path: 'cinemas',
@@ -30,6 +31,10 @@ export default new Router({
           redirect: '/films'
         }
       ]
+    },
+    {
+      path: '/film/:id',
+      component: () => import('./views/film/detail.vue')
     }
   ]
 })

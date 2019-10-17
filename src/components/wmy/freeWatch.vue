@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <router-link to="/">
+  <div class="bscroll" style="height:720px">
+    <div>
       <van-swipe :autoplay="3000" indicator-color="white" effect="cube">
         <div class="freeWatch">
           <van-swipe-item v-for="(bigpic,index) of loopPic" :key="index">
-            <img :src="`http://movie.miguvideo.com/publish/${bigpic.imgSrc}`" alt />
+            <router-link :to="`/film/detail`">
+              <img :src="`http://movie.miguvideo.com/publish/${bigpic.imgSrc}`" alt />
+            </router-link>
           </van-swipe-item>
         </div>
       </van-swipe>
@@ -105,7 +107,11 @@
         <div class="module-name">好莱坞大片</div>
         <div class="hotFilmList">
           <div class="Bigpic">
-            <img v-if="holiwoodFilms0.imgSrc" :src="`http://movie.miguvideo.com/publish/i_www/${holiwoodFilms0.imgSrc}`" alt />
+            <img
+              v-if="holiwoodFilms0.imgSrc"
+              :src="`http://movie.miguvideo.com/publish/i_www/${holiwoodFilms0.imgSrc}`"
+              alt
+            />
             <p class="pionts">{{holiwoodFilms0.miguScore}}</p>
           </div>
           <p class="hoodliwood1">{{holiwoodFilms0.name}}</p>
@@ -143,7 +149,11 @@
         <div class="module-name">午夜惊悚</div>
         <div class="hotFilmList">
           <div class="Bigpic">
-            <img v-if="scarefilm0.imgSrc" :src="`http://movie.miguvideo.com/publish/i_www/${scarefilm0.imgSrc}`" alt />
+            <img
+              v-if="scarefilm0.imgSrc"
+              :src="`http://movie.miguvideo.com/publish/i_www/${scarefilm0.imgSrc}`"
+              alt
+            />
             <p class="pionts">{{scarefilm0.miguScore}}</p>
           </div>
           <p class="hoodliwood1">{{scarefilm0.name}}</p>
@@ -163,38 +173,44 @@
             </li>
           </ul>
         </div>
-      </div>
-    </router-link>
-  </div>
+      
+    </div>
+    </div>
+    </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
+import BScroll from "better-scroll"
 
 export default {
-  name: 'freeWatch',
-  data () {
+  name: "freeWatch",
+  data() {
     return {
       loopPic: [],
       freeWatchFilm: [],
       Blmovies: [],
+      BlmoviesFilter:[],
 
       doubanFilm: [],
+      filterFilm:[],
       migidubo: [],
 
       holiwoodFilms0: [],
+      filterHooliwoodFilm:[],
       holiwoodFilms1: [],
 
       scarefilm0: [],
+      filterScareFilm:[],
       scarefilm1: []
-    }
+    };
   },
 
-  created () {
+  created() {
     // 豆瓣评分前面的电影
     axios
       .post(
-        '/api/lovev/miguMovie/data/seeFilmData.jsp',
+        "/api/lovev/miguMovie/data/seeFilmData.jsp",
         {
           nodeId: 70022795,
           pagesize: 3,
@@ -202,23 +218,24 @@ export default {
         },
         {
           transformRequest: data => {
-            let arr = []
+            let arr = [];
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`)
+              arr.push(`${key}=${data[key]}`);
             }
-            return arr.join('&')
+            return arr.join("&");
           }
         }
       )
       .then(response => {
-        this.loopPic = response.data[0].list
-        this.freeWatchFilm = response.data[1].list
-        this.Blmovies = response.data[2].list
-      })
+        this.loopPic = response.data[0].list;
+        this.freeWatchFilm = response.data[1].list;
+        this.BlmoviesFilter =response.data[2].list;
+        this.Blmovies = this.BlmoviesFilter.filter(item =>item.imgSrcV)
+      });
     // 豆瓣评分往后的电影
     axios
       .post(
-        '/api/lovev/miguMovie/data/seeFilmData.jsp',
+        "/api/lovev/miguMovie/data/seeFilmData.jsp",
         {
           nodeId: 70022795,
           pagesize: 3,
@@ -226,22 +243,23 @@ export default {
         },
         {
           transformRequest: data => {
-            let arr = []
+            let arr = [];
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`)
+              arr.push(`${key}=${data[key]}`);
             }
-            return arr.join('&')
+            return arr.join("&");
           }
         }
       )
-      .then(response => {
-        this.doubanFilm = response.data[0].list
-        this.migidubo = response.data[1].list
-      })
+      .then(response => {       
+        this.migidubo = response.data[1].list;
+        this.filterFilm=response.data[0].list;
+        this.doubanFilm = this.filterFilm.filter(item =>item.imgSrcV);
+      });
     // 好莱坞大片
     axios
       .post(
-        '/api/lovev/miguMovie/data/seeFilmData.jsp',
+        "/api/lovev/miguMovie/data/seeFilmData.jsp",
         {
           nodeId: 70022795,
           pagesize: 3,
@@ -249,22 +267,23 @@ export default {
         },
         {
           transformRequest: data => {
-            let arr = []
+            let arr = [];
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`)
+              arr.push(`${key}=${data[key]}`);
             }
-            return arr.join('&')
+            return arr.join("&");
           }
         }
       )
       .then(response => {
-        this.holiwoodFilms0 = response.data[1].list[0].picList[0]
-        this.holiwoodFilms1 = response.data[1].list[1].picList.slice(2, 5)
-      })
+        this.holiwoodFilms0 = response.data[1].list[0].picList[0];
+        this.filterHooliwoodFilm=response.data[1].list[1].picList;
+        this.holiwoodFilms1 = this.filterHooliwoodFilm.filter(item =>item.imgSrcV);
+      });
     // 午夜惊悚
     axios
       .post(
-        '/api/lovev/miguMovie/data/seeFilmData.jsp',
+        "/api/lovev/miguMovie/data/seeFilmData.jsp",
         {
           nodeId: 70022795,
           pagesize: 3,
@@ -272,19 +291,30 @@ export default {
         },
         {
           transformRequest: data => {
-            let arr = []
+            let arr = [];
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`)
+              arr.push(`${key}=${data[key]}`);
             }
-            return arr.join('&')
+            return arr.join("&");
           }
         }
       )
       .then(response => {
-        this.scarefilm0 = response.data[1].list[0].picList[0]
-        this.scarefilm1 = response.data[1].list[1].picList
-        console.log(this.scarefilm1)
-      })
+        this.scarefilm0 = response.data[1].list[0].picList[0];
+        this.filterScareFilm=response.data[1].list[1].picList
+        this.scarefilm1 = this.filterScareFilm.filter(item =>item.imgSrcV);
+      });
+  },
+  mounted() {
+      let bs = new BScroll(".bscroll", {
+      probeType:3,
+      click: true,
+      eventPassthrough: 'horizontal',
+      pullUpLoad:true // 开启上拉加载
+    });
+    bs.on('pullingUp',() =>{
+      console.log(123)
+    })
   }
 }
 </script>
