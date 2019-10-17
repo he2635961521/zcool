@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import FilmList from "../../components/hdh/filmList";
-import Video from "../../components/hdh/video";
+import FilmList from "../../../components/hdh/filmList";
+import Video from "../../../components/hdh/video";
 
 export default {
   name: "Films",
