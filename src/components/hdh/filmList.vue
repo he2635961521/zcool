@@ -1,4 +1,5 @@
 <template>
+<div class="bscroll" style="height:720px">
   <div>
     <!-- 第一个轮播图 -->
     <div class="swiper-container swiper-container1" ref="swiper1">
@@ -59,54 +60,56 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
-import Swiper from "swiper";
-import "swiper/css/swiper.min.css";
-import axios from "axios";
+import Swiper from 'swiper'
+import 'swiper/css/swiper.min.css'
+import axios from 'axios'
+import BScroll from 'better-scroll'
 export default {
-  name: "hdh",
+  name: 'hdh',
 
-  data() {
+  data () {
     return {
       film1: [],
       film2: [],
       film3: []
-    };
+    }
   },
-  created() {
+  created () {
     axios
       .post(
-        "/api/lovev/miguMovie/data/seeFilmData.jsp",
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
           nodeId: 70022794,
           pagesize: 3,
           pageidx: 1
         },
         {
-          transformRequest(data) {
+          transformRequest (data) {
             // console.log(data);
             // {key1: 'value1', key2: 'value2', key3: 'value3'}
             // 'key1=value1&key2=value2&key3=value3'
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
       .then(response => {
-        this.filmList = response.data;
-        this.film1 = this.filmList[0].list;
-        this.film2 = this.filmList[1].list;
-        this.film3 = this.filmList[2].list;
-        console.log(this.film1.length);
-      });
+        this.filmList = response.data
+        this.film1 = this.filmList[0].list
+        this.film2 = this.filmList[1].list
+        this.film3 = this.filmList[2].list
+        console.log(this.film1.length)
+      })
   },
 
-  mounted() {
+  mounted () {
     // 第二个轮播的js设置
     setTimeout(() => {
       /* eslint-disable */
@@ -158,6 +161,12 @@ export default {
         loop: true
       });
     }, 1000);
+    let bs = new BScroll(".bscroll", {
+      probeType:3,
+      click: true,
+      eventPassthrough: 'horizontal',
+      pullUpLoad:true // 开启上拉加载
+    })
   },
   methods: {
     // realUrl(str){

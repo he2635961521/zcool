@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="box"></div>
     <div class="image" v-for="(film,index) in film4" :key="index">
       <!-- <router-link> -->
       <a :href="`http://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/detail/trailer.jsp?contentId=${film.picList[0].REDREICT_ID}&cid=${film.picList[0].REDREICT_ID}`" >
