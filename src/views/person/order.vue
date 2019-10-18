@@ -44,27 +44,27 @@ export default {
     font-size: 26px;
     text-align: center;
     position: relative;
-    height: 50px;
+    height: 30px;
     a{
       position: absolute;
       left:0;
-     line-height: 50px;
-      font-size: 32px;
+     line-height: 30px;
+      font-size: 26px;
       color: #000;
     }
     span{
-      font-size: 24px;
+      font-size: 20px;
       font-style: "宋体";
-      line-height: 50px;
+      line-height: 30px;
     }
   }
   .rout{
     display: flex;
     justify-content: space-around;
     margin: 10px auto;
-    font-size: 20px;
-    height: 40px;
-    line-height: 40px;
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
     #movie{
       width: 50%;
       color: #000;
