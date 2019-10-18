@@ -1,4 +1,5 @@
 <template>
+<div class="bscroll" style="height:720px">
   <div>
     <!-- 第一个轮播图 -->
     <div class="swiper-container swiper-container1" ref="swiper1">
@@ -23,7 +24,9 @@
         <div class="swiper-wrapper">
           <!-- 单个轮播图 -->
           <div class="swiper-slide" v-for="(film,index) in film2" :key="index">
+            <router-link :to="`/buy/detail/${film.SRC_CONT_ID}`">
             <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
+            </router-link>
             <div class="content-intro">
               <p class="font-14 grey">{{film.name}}</p>
               <p class="font-13 light-grey">{{film.LONG_NAME}}</p>
@@ -55,12 +58,14 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import axios from "axios";
+import BScroll from 'better-scroll'
 export default {
   name: "hdh",
 
@@ -149,8 +154,14 @@ export default {
           prevEl: ".swiper-button-prev"
         },
         loop: true
-      });
+      })
     }, 1000);
+    let bs = new BScroll(".bscroll", {
+      probeType:3,
+      click: true,
+      eventPassthrough: 'horizontal',
+      pullUpLoad:true // 开启上拉加载
+    })
   },
   methods: {
     // realUrl(str){
