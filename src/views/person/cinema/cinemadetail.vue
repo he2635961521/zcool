@@ -1,3 +1,4 @@
+周晨 15:02:29
 <template>
   <div>
     <div>
@@ -28,9 +29,18 @@
         <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">
           文字文字
         </van-divider>
-          <div class="day">上午场</div>
-          <div class="day">下午场</div>
-          <div class="day">晚间场</div>
+          <div class="day">放映时间</div>
+          <van-cell-group>
+             <!-- 使用 title 插槽来自定义标题 -->
+            <template slot="title">
+              <p class="custom-title slot" v-for="index in item.shows" :key="index.showId" >
+                <span> {{index.showTime.substr(0,2)}} : {{index.showTime.substr(2,2)}}</span>
+                <i>{{index.language}}/{{index.edition}}</i>
+                <em>{{index.miguPrice/100}}￥</em>
+                <van-button color="red" plain>点击购票</van-button>
+               </p>
+            </template>
+          </van-cell-group>
         </van-tab>
       </van-tabs>
 
@@ -39,13 +49,13 @@
 </template>
 <script>
 import Vue from 'vue'
-import { Search, List, Cell, CellGroup, Tab, Tabs, Divider } from 'vant'
+import { Search, List, Cell, CellGroup, Tab, Tabs, Divider, Button } from 'vant'
 import axios from 'axios'
 import Swiper from 'swiper'
 Vue.use(Search)
   .use(List)
   .use(Cell)
-  .use(CellGroup).use(Tab).use(Tabs).use(Divider)
+  .use(CellGroup).use(Tab).use(Tabs).use(Divider).use(Button)
 export default {
   name: 'cinemadetail',
   data () {
@@ -60,23 +70,23 @@ export default {
       active: 0
     }
   },
-  // beforeRouteEnter (to, from, next) {
-  //   next(res => {
-  //     res.cinemaid = res.$route.params.id
-  //     res.cinemaAdd = res.$route.params.cinemaAdd
-  //     res.cinemaName = res.$route.params.cinemaName
+  beforeRouteEnter (to, from, next) {
+    next(res => {
+      res.cinemaid = res.$route.params.id
+      res.cinemaAdd = res.$route.params.cinemaAdd
+      res.cinemaName = res.$route.params.cinemaName
 
-  //     res.getmovie(res)
-  //   })
-  // },
-  created () {
-    this.cinemaid = this.$route.params.id
-    this.cinemaAdd = this.$route.params.cinemaAdd
-    this.cinemaName = this.$route.params.cinemaName
-    this.getmovie(this)
-    console.log(this.cinemamovie)
-    // this.getshows(this, this.cinemamovie[0].filmId)
+      res.getmovie(res)
+    })
   },
+  // created () {
+  //   this.cinemaid = this.$route.params.id
+  //   this.cinemaAdd = this.$route.params.cinemaAdd
+  //   this.cinemaName = this.$route.params.cinemaName
+  //   this.getmovie(this)
+  //   console.log(this.cinemamovie)
+  //   // this.getshows(this, this.cinemamovie[0].filmId)
+  // },
   methods: {
     getmovie (mes) {
       axios
@@ -150,21 +160,30 @@ export default {
         centeredSlides: true,
         loop: true,
         autoplay: true,
-        speed: 100,
         pagination: {
           el: '.swiper-pagination',
           clickable: true
         },
         on: {
           slideChangeTransitionEnd: function () {
+            if (!_this.cinemamovie) {
+              return
+            }
             let arr = _this.cinemamovie[this.realIndex]
-            _this.filmId = arr.filmId
-            _this.moviename = _this.cinemamovie[this.realIndex].filmName
+            if (!arr) {
+              return
+            }
+            try {
+              _this.filmId = arr.filmId
+              _this.moviename = _this.cinemamovie[this.realIndex].filmName
+            } catch (error) {
+
+            }
           }
         }
       })
       mySwiper.autoplay = false
-    }, 500)
+    }, 600)
   },
   watch: {
     filmId (n, o) {
@@ -244,10 +263,31 @@ export default {
   margin-top: 10px;
 }
  .day{
-   color: pink;
-   font-size: 14px;
+   color: black;
+   font-size: 16px;
    text-align: center;
-   height: 15px;
-   line-height: 15px;
+   height: 20px;
+   line-height: 20px;
+ }
+ .slot{
+   color: #000;
+   font-size: 18px;
+   margin: 10px 0;
+   height: 66px;
+   line-height: 66px;
+   border-bottom: skyblue 1px solid;
+     display: flex ;
+     justify-content: space-around;
+     span{
+       display: inline-block;
+       font-size: 18px;
+     }
+     i{
+       display: inline-block;
+     }
+     em{
+       font-size: 22px;
+       color: red;
+     }
  }
 </style>

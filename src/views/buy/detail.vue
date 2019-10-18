@@ -60,7 +60,7 @@
     </div>
 
     <div class="page-body">
-      <div class="swiper-container">
+      <div class="swiper-containercc">
         <p>演职人员</p>
         <ul class="swiper-container-actor">
           <li v-for="(actor , index) in detailData.personnel" :key="index">
@@ -70,7 +70,7 @@
           </li>
         </ul>
       </div>
-      <div class="swiper-container">
+      <div class="swiper-containercc">
         <p>视频和剧照</p>
         <ul class="swiper-wrapper-photo">
           <li v-for="(photo ,index) in detailData.poster" :key="index">
@@ -78,7 +78,7 @@
           </li>
         </ul>
       </div>
-      <div class="swiper-container" style="margin-bottom:42px">
+      <div class="swiper-containercc" style="margin-bottom:42px">
         <p>推荐影片</p>
         <ul class="swiper-container-actor">
           <li v-for="film in recommendFilm" :key="film.contid">
@@ -285,7 +285,7 @@ export default {
       }
     }
     .page-body{
-      .swiper-container{
+      .swiper-containercc{
         border-top: 12px solid rgba($color: #999, $alpha: 0.2);
         p{
           padding: 10px 10px 10px 10px;

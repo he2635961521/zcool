@@ -15,9 +15,8 @@ export default new Vuex.Store({
 
   mutations: {
     setCurCity (state, payload) {
-    state.curCity = payload
+      state.curCity = payload
     }
   }
 
 })
-

@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/home/Home.vue'
-// import Films from './views/home/films.vue'
-import Cinemas from './views/home/cinemas.vue'
-import Center from './views/home/center.vue'
+
 import bookTicket from './views/buy/book-ticket.vue'
 import hotMovieList from './components/buy/hot-showing.vue'
 import comingList from './components/buy/coming-soon.vue'
 import gpscity from './views/buy/choice-city.vue'
 import goodDetail from './views/buy/detail.vue'
+import Home from './views/home/hdh/Home.vue'
+import Films from './views/home/hdh/films.vue'
 
 const Person = () => import('./views/person/person.vue')
 const Login = () => import('./views/person/login.vue')
@@ -21,34 +20,45 @@ const CinemaSearch = () => import('./views/person/cinema/cinemasearch.vue')
 const CinemaDetail = () => import('./views/person/cinema/cinemadetail.vue')
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       component: Home,
       children: [
         {
-          // 路由懒加载
-          path: 'films',
-          component: () => import('./views/home/films.vue')
+          path: 'hdh/films',
+          component: Films
         },
         {
-          path: 'cinemas',
-          component: Cinemas
+          path: 'buy',
+          component: bookTicket,
+          redirect: 'buy/list',
+          children: [
+            {
+              path: 'list',
+              components: {
+                a: hotMovieList,
+                b: comingList
+              }
+            }
+          ]
         },
         {
-          path: 'center',
-          component: Center
+          // 我的
+          path: '/person',
+          name: 'person',
+          component: Person
         },
+        // 路由懒加载
+        // { path: 'films',
+        //   component: () => import('./views/home/films.vue')
+        // },
         {
           path: '',
-          redirect: '/films'
+          redirect: '/hdh/films'
         }
       ]
-    },
-    {
-      path: '/film/:id',
-      component: () => import('./views/film/detail.vue')
     },
     {
       path: '/buy/selectCity',
@@ -57,12 +67,6 @@ export default new Router({
     {
       path: '/buy/detail/:id',
       component: goodDetail
-    },
-    {
-      // 我的
-      path: '/person',
-      name: 'person',
-      component: Person
     },
     {
       // 登录页面
@@ -125,3 +129,5 @@ export default new Router({
   ]
 }
 )
+
+export default router

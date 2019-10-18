@@ -1,8 +1,8 @@
 //引入其他基本 css
 @import "./common/reset.scss";
+@import "./common/px2rem.scss";
 
-html,
-body {
-  height: 100%;
-}
-@import "./common/px2rem.scss"
+html,body{
+    height:100%;
+  overflow-x:none;overflow-y:auto;
+  }
