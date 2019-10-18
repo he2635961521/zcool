@@ -10,11 +10,11 @@
         <!-- head结束 -->
         <div class="page-head">
           <a href="#">
-            <router-link to="/login">
+            <router-link :to="tolink">
                <div class="user">
               <div class="photo"></div>
             </div>
-            <p>点击登录</p>
+            <p>{{message}}</p>
                </router-link>
           </a>
           <div class="past">
@@ -26,6 +26,7 @@
             <div class="list">
               <ul>
                 <li>
+                  <router-link to="/person/order">
                     <div class="my-list clearfix">
                         <span class="pull-left"><img src="../../assets/personal/order.png" width="16px">
                         <span class="margin-left-5">我的订单</span></span>
@@ -33,6 +34,7 @@
                            <i class="iconfont icon-xiangyou"></i>
                         </span>
                     </div>
+                  </router-link>
                 </li>
                 <li>
                     <div class="my-list clearfix">
@@ -99,17 +101,21 @@
 // import { mapState } from 'vuex'
 export default {
   name: 'person',
-  beforeRouteEnter: (to, from, next) => {
-    console.log(this)
-    console.log('进入之前')
-    // console.log(this.$store.state)
-    next(vm => {
-      console.log(vm)
+  beforeRouteEnter (to, from, next) {
+    next(res => {
+      if (localStorage.getItem('token')) {
+        res.message = '欢迎您' + localStorage.getItem('token')
+        res.tolink = '/userinfo'
+      } else {
+        res.message = '点击登录'
+        res.tolink = '/login'
+      }
     })
   },
   data () {
     return {
-      name: '233'
+      message: '',
+      tolink: ''
     }
   },
   methods: {
@@ -154,7 +160,7 @@ export default {
     padding: 20px 10px;
     background-color: #fff;
     position: relative;
-    width: 533px;
+    width: 100%;
     height: 55px;
     a{
       display: inline !important;
@@ -177,7 +183,7 @@ export default {
       }
       }
           p{
-    width: 42.98%;
+   width: 70%;
     height: 56px;
     line-height: 56px;
     padding-left: 10px;
@@ -189,10 +195,9 @@ export default {
 }
     }
     .past{
-          width: 10.32%;
-    padding:15px 0;
+    padding:18px 10px;
     text-align: right;
-    float: left;
+    float: right;
     color: #000;
     }
     }

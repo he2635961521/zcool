@@ -13,12 +13,11 @@ export default new Vuex.Store({
       provinceName: '广东'
     }
   },
+
   mutations: {
     setCurCity (state, payload) {
-      state.curCity = payload
+    state.curCity = payload
     }
-  },
-  actions: {
-
   }
+
 })

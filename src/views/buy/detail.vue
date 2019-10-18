@@ -345,6 +345,7 @@ export default {
       position: fixed;
       background: white;
       bottom: 0;
+      z-index: 999;
       .collection,.active,.write{
         display: flex;
         justify-content: center;

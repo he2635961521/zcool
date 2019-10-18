@@ -1,6 +1,6 @@
 <template>
   <div class="bookMovie">
-    <van-nav-bar title="标题" left-text="返回" left-arrow>
+    <van-nav-bar title="标题" left-text="返回" left-arrow @click-right="onClickRight">
       <div slot="left">
         <router-link to="/buy/selectCity">
           <i>{{ curCity.cityName }}</i>
@@ -49,6 +49,9 @@ export default {
     cinameClick () {
       this.curComponent = cinameList
       this.curActive = 'ciname'
+    },
+    onClickRight () {
+      this.$router.push('/cinemasearch')
     }
   }
 }
