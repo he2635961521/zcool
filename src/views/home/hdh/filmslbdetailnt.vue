@@ -9,44 +9,44 @@
 </template>
 
 <script>
-import axios from "axios";
-//console.log(window.location.href.split("/")[6]);
+import axios from 'axios'
+// console.log(window.location.href.split("/")[6]);
 
 export default {
-  name: "Film",
+  name: 'Film',
 
-  data() {
+  data () {
     return {
       film1: [],
-      film2: [1,2,3],
+      film2: [1, 2, 3],
       film3: []
-    };
+    }
   },
 
-  created() {
+  created () {
     axios
       .post(
-        "/migu/lovev/miguMovie/data/seeFilmData.jsp",
+        '/migu/lovev/miguMovie/data/seeFilmData.jsp',
         {
-          nodeId: window.location.href.split("/")[6]
+          nodeId: window.location.href.split('/')[6]
         },
         {
-          transformRequest(data) {
-            //console.log(data);
+          transformRequest (data) {
+            // console.log(data);
             // {key1: 'value1', key2: 'value2', key3: 'value3'}
             // 'key1=value1&key2=value2&key3=value3'
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
       .then(response => {
-        this.film1 = response.data;
-        console.log(this.film1);
-      });
+        this.film1 = response.data
+        console.log(this.film1)
+      })
 
     //  axios
     //     .get(
@@ -73,7 +73,7 @@ export default {
 
     //     });
   }
-};
+}
 </script>
 
 <style lang="scss">

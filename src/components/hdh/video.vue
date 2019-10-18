@@ -15,50 +15,50 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
-  name: "hhh",
+  name: 'hhh',
 
-  data() {
+  data () {
     return {
       film4: []
-    };
+    }
   },
 
-  created() {
+  created () {
     axios
       .post(
-        "/migu/lovev/miguMovie/data/seeFilmData.jsp",
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
           nodeId: 70027030,
           pagesize: 3,
           pageidx: 1
         },
         {
-          transformRequest(data) {
-            //console.log(data);
+          transformRequest (data) {
+            // console.log(data);
             // {key1: 'value1', key2: 'value2', key3: 'value3'}
             // 'key1=value1&key2=value2&key3=value3'
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
       .then(response => {
-        this.filmList = response.data;
-        this.film4 = this.filmList[1].list;
-        console.log(this.film4);
-      });
+        this.filmList = response.data
+        this.film4 = this.filmList[1].list
+        console.log(this.film4)
+      })
   }
   // methods : {
   //   fn1() {
   //     return  window.location.href='http://www.baidu.com'
   //   }
   // }
-};
+}
 </script>
 
 <style lang="scss">

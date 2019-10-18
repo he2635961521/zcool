@@ -31,37 +31,43 @@
 
     <FilmList v-if="curFilmType == '0'"/>
     <Video v-if="curFilmType == '3'" />
+    <Menu v-if="curFilmType == '2'" />
+    <Watch v-if="curFilmType == '1'" />
 
   </div>
 </template>
 
 <script>
-import FilmList from "../../../components/hdh/filmList";
-import Video from "../../../components/hdh/video";
+import FilmList from '../../../components/hdh/filmList'
+import Video from '../../../components/hdh/video'
+import Menu from '../../../components/wmy/filmMenu'
+import Watch from '../../../components/wmy/freeWatch'
 
 export default {
-  name: "Films",
+  name: 'Films',
 
   components: {
     FilmList,
-    Video
+    Video,
+    Menu,
+    Watch
   },
 
-  data() {
+  data () {
     return {
-      curFilmType: "0" //当前的影片类型
-    };
+      curFilmType: '0' // 当前的影片类型
+    }
   },
 
   methods: {
     /**
      * 切换当前的影片类型
      */
-    chgFilmType(type) {
-      this.curFilmType = type;
+    chgFilmType (type) {
+      this.curFilmType = type
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

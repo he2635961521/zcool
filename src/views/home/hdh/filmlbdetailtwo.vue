@@ -8,18 +8,18 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
-  data() {
+  data () {
     return {
       film11: []
-    };
+    }
   },
-  mounted() {},
-  created() {
+  mounted () {},
+  created () {
     axios
       .get(
-        "/migu/publish/i_www/resource/lovev/miguMovie/detail/detail_data.jsp?cid=654900643",
+        '/migu/publish/i_www/resource/lovev/miguMovie/detail/detail_data.jsp?cid=654900643',
         {
           cid: 654900643
         }
@@ -37,12 +37,12 @@ export default {
         // }
       )
       .then(response => {
-        this.filmList = response.data;
-        this.film11 = this.filmList[0];
-        console.log(this.film11);
-      });
+        this.filmList = response.data
+        this.film11 = this.filmList[0]
+        console.log(this.film11)
+      })
   }
-};
+}
 </script>
 
 <style lang="scss">

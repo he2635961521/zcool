@@ -58,66 +58,68 @@
 </template>
 
 <script>
-import Swiper from "swiper";
-import "swiper/css/swiper.min.css";
-import axios from "axios";
+import Swiper from 'swiper'
+import 'swiper/css/swiper.min.css'
+import axios from 'axios'
 export default {
-  name: "hdh",
+  name: 'hdh',
 
-  data() {
+  data () {
     return {
       film1: [],
       film2: [],
       film3: []
-    };
+    }
   },
-  created() {
+  created () {
     axios
       .post(
-        "/migu/lovev/miguMovie/data/seeFilmData.jsp",
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
         {
           nodeId: 70022794,
           pagesize: 3,
           pageidx: 1
         },
         {
-          transformRequest(data) {
-            //console.log(data);
+          transformRequest (data) {
+            // console.log(data);
             // {key1: 'value1', key2: 'value2', key3: 'value3'}
             // 'key1=value1&key2=value2&key3=value3'
-            let arr = [];
+            let arr = []
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`);
+              arr.push(`${key}=${data[key]}`)
             }
-            return arr.join("&");
+            return arr.join('&')
           }
         }
       )
       .then(response => {
-        this.filmList = response.data;
-        this.film1 = this.filmList[0].list;
-        this.film2 = this.filmList[1].list;
-        this.film3 = this.filmList[2].list;
-        console.log(this.film1.length);
-      });
+        this.filmList = response.data
+        this.film1 = this.filmList[0].list
+        this.film2 = this.filmList[1].list
+        this.film3 = this.filmList[2].list
+        console.log(this.film1.length)
+      })
   },
 
-  mounted() {
+  mounted () {
     // 第二个轮播的js设置
     setTimeout(() => {
+      /* eslint-disable */
       new Swiper(this.$refs.swiper2, {
         slidesPerView: 3.2,
         spaceBetween: 0
-      });
-    }, 1000);
+      })
+    }, 1000)
 
     // 第一个轮播图的js设置
     setTimeout(() => {
+      /* eslint-disable */
       new Swiper(this.$refs.swiper1, {
-        effect: "coverflow",
+        effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
-        slidesPerView: "auto",
+        slidesPerView: 'auto',
         coverflowEffect: {
           rotate: 50,
           stretch: 0,
@@ -132,25 +134,26 @@ export default {
           delay: 2000
         },
         pagination: {
-          el: ".swiper-pagination1"
+          el: '.swiper-pagination1'
         }
-      });
-    }, 1000);
+      })
+    }, 1000)
 
     // 第三个轮播图的js设置
     setTimeout(() => {
+      /* eslint-disable */
       new Swiper(this.$refs.swiper3, {
         pagination: {
-          el: ".swiper-pagination2",
-          type: "progressbar"
+          el: '.swiper-pagination2',
+          type: 'progressbar'
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
         },
         loop: true
-      });
-    }, 1000);
+      })
+    }, 1000)
   },
   methods: {
     // realUrl(str){
@@ -161,7 +164,7 @@ export default {
     //   }
     // }
   }
-};
+}
 </script>
 
 <style lang="scss">
