@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="buyTiket" >
-            <img @click.stop="buyTicket(movie.pomsContId)" src="http://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/images/icon/oreder.png" alt="">
+            <img @click.stop="buyTicket(movie)" src="http://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/images/icon/oreder.png" alt="">
         </div>
       </li>
     </ul>
@@ -48,7 +48,7 @@ export default {
       this.$router.push('/buy/detail/' + id)
     },
     buyTicket (id) {
-
+      this.$router.push({ path: '/buy/byciname', query: id })
     }
   },
 
