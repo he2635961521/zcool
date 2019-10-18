@@ -98,8 +98,11 @@
         <i class="iconfont icon-xie"></i>
         <span>写影评</span>
       </div>
-      <div class="active">
+      <div v-if="$route.query.plan === '0'" class="buyActive">
         <span>敬请期待</span>
+      </div>
+      <div v-else class="active" @click="goTicket(detailData)">
+        <span>选座购票</span>
       </div>
     </div>
   </div>
@@ -128,6 +131,9 @@ export default {
     fn () {
       this.$router.go(-1)
       console.log(1111)
+    },
+    goTicket (id) {
+      this.$router.push({ path: '/buy/byciname', query: id })
     }
   },
 
@@ -151,6 +157,7 @@ export default {
 <style lang="scss">
 @import '../../assets/styles/common/mixin.scss';
   .detail{
+    background: white;
     font-size: 16px;
     .page-head{
       height: 50px;
@@ -228,10 +235,10 @@ export default {
         width: 100%;
         height: 148px;
         display: flex;
+        position: relative;
+        z-index: 999;
         .pull-left{
-          position: relative;
           width: 95px;
-          z-index: 999;
           img{
             width: 100%;
             height: 100%;
@@ -346,7 +353,7 @@ export default {
       background: white;
       bottom: 0;
       z-index: 999;
-      .collection,.active,.write{
+      .collection,.active,.buyActive,.write{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -358,7 +365,12 @@ export default {
       .active{
         flex: 2;
         color: #fff;
+        background: #FEC22C;
+      }
+      .buyActive{
+        flex: 2;
         background: #d3d3d3;
+        color: #fff;
       }
     }
   }

@@ -96,6 +96,8 @@ export default {
       axios.post('/cinemaapi', {
         cityCode: 4900,
         orderType: 1,
+        // filmId: 51167,
+        // showDate: 2019-10-18,
         longitude: '',
         latitude: ''
       }, {

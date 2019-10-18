@@ -83,6 +83,7 @@ export default {
 
 <style lang="scss">
   .GPSCity{
+    background: white;
     padding: 12px;
     .van-nav-bar{
       background: #eb3452;

@@ -23,7 +23,7 @@
 </template>
 
 <style lang="scss">
-// @import '../../assets/styles/common/mixins.scss';
+ @import '../../../assets/styles/common/mixin.scss';
 
 .page-home {
   height: 100%;
@@ -37,7 +37,7 @@
   }
 
   .navbar {
-    // @include border-top;
+    @include border-top;
     display: flex;
     height: 50px;
 

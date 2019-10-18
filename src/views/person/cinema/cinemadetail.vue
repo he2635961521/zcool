@@ -27,7 +27,6 @@
       <van-tabs v-model="active" class="rout" type="card" animated swipeable :lazy-render="false">
         <van-tab v-for="item in dayshows" :key="item['shows'][0]['showId']"  :title="`${item['showdate']}`">
         <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">
-          文字文字
         </van-divider>
           <div class="day">放映时间</div>
           <van-cell-group>

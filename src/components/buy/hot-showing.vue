@@ -63,6 +63,7 @@ export default {
 <style lang="scss">
 @import "../../assets/styles/common/mixin.scss";
   .hotShowing{
+    background: white;
     width: 100%;
     font-size: 16px;
     ul{
