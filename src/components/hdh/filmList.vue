@@ -23,7 +23,11 @@
         <div class="swiper-wrapper">
           <!-- 单个轮播图 -->
           <div class="swiper-slide" v-for="(film,index) in film2" :key="index">
-            <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
+            <!-- <a :href="`/buy/detail`"> -->
+            <router-link :to="`/buy/detail/${film.SRC_CONT_ID}`">
+              <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
+            </router-link>
+            <!-- </a> -->
             <div class="content-intro">
               <p class="font-14 grey">{{film.name}}</p>
               <p class="font-13 light-grey">{{film.LONG_NAME}}</p>
