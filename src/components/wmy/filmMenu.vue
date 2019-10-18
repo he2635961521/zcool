@@ -1,9 +1,9 @@
 <template>
   <div class="bscroll" style="height:720px">
     <div>
-      <div class="swiper-container">
+      <div class="swiper-container swiper-container11" ref="swiper1">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item,index) of updownloop" :key="index">
+          <div class="swiper-slide swiper-slide11" v-for="(item,index) of updownloop" :key="index">
             <div class="luuuu"></div>
             <img :src="`http://movie.miguvideo.com/publish/${item.imgSrc}`" />
           </div>
@@ -314,7 +314,7 @@ export default {
   mounted () {
     setTimeout(() => {
       /* eslint-disable */
-      new Swiper(".swiper-container", {
+      new Swiper(this.$refs.swiper1, {
         loop: true,
         slidesPperView: "auto",
         speed: 300,
@@ -382,11 +382,11 @@ body {
   height: 82px;
   background: #b97979;
 }
-.swiper-container {
+.swiper-container11 {
   width: 100%;
   height: 230px;
 }
-.swiper-slide {
+.swiper-slide11 {
   img {
     height: 100%;
     width: 100%;

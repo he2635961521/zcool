@@ -3,7 +3,7 @@
     <!-- 第一个轮播图 -->
     <div class="swiper-container swiper-container1" ref="swiper1">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="(film,index) in film1" :key="index">
+        <div class="swiper-slide swiper-slide1" v-for="(film,index) in film1" :key="index">
           <!-- `/hdh/filmlbdetail/${film.goodsUrl}` -->
           <a :href="`${film.wapUrl}`">
             <img :src="`http://movie.miguvideo.com/publish/i_www/${film.imgSrc}`" />
@@ -58,68 +58,68 @@
 </template>
 
 <script>
-import Swiper from 'swiper'
-import 'swiper/css/swiper.min.css'
-import axios from 'axios'
+import Swiper from "swiper";
+import "swiper/css/swiper.min.css";
+import axios from "axios";
 export default {
-  name: 'hdh',
+  name: "hdh",
 
-  data () {
+  data() {
     return {
       film1: [],
       film2: [],
       film3: []
-    }
+    };
   },
-  created () {
+  created() {
     axios
       .post(
-        '/api/lovev/miguMovie/data/seeFilmData.jsp',
+        "/api/lovev/miguMovie/data/seeFilmData.jsp",
         {
           nodeId: 70022794,
           pagesize: 3,
           pageidx: 1
         },
         {
-          transformRequest (data) {
+          transformRequest(data) {
             // console.log(data);
             // {key1: 'value1', key2: 'value2', key3: 'value3'}
             // 'key1=value1&key2=value2&key3=value3'
-            let arr = []
+            let arr = [];
             for (let key in data) {
-              arr.push(`${key}=${data[key]}`)
+              arr.push(`${key}=${data[key]}`);
             }
-            return arr.join('&')
+            return arr.join("&");
           }
         }
       )
       .then(response => {
-        this.filmList = response.data
-        this.film1 = this.filmList[0].list
-        this.film2 = this.filmList[1].list
-        this.film3 = this.filmList[2].list
-        console.log(this.film1.length)
-      })
+        this.filmList = response.data;
+        this.film1 = this.filmList[0].list;
+        this.film2 = this.filmList[1].list;
+        this.film3 = this.filmList[2].list;
+        console.log(this.film1.length);
+      });
   },
 
-  mounted () {
+  mounted() {
     // 第二个轮播的js设置
     setTimeout(() => {
       /* eslint-disable */
       new Swiper(this.$refs.swiper2, {
         slidesPerView: 3.2,
         spaceBetween: 0
-      })
-    }, 1000)
+      });
+    }, 1000);
 
     // 第一个轮播图的js设置
     setTimeout(() => {
       /* eslint-disable */
       new Swiper(this.$refs.swiper1, {
-        effect: 'coverflow',
+        effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,
-        slidesPerView: 'auto',
+        slidesPerView: "auto",
         coverflowEffect: {
           rotate: 50,
           stretch: 0,
@@ -134,26 +134,26 @@ export default {
           delay: 2000
         },
         pagination: {
-          el: '.swiper-pagination1'
+          el: ".swiper-pagination1"
         }
-      })
-    }, 1000)
+      });
+    }, 1000);
 
     // 第三个轮播图的js设置
     setTimeout(() => {
       /* eslint-disable */
       new Swiper(this.$refs.swiper3, {
         pagination: {
-          el: '.swiper-pagination2',
-          type: 'progressbar'
+          el: ".swiper-pagination2",
+          type: "progressbar"
         },
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
         },
         loop: true
-      })
-    }, 1000)
+      });
+    }, 1000);
   },
   methods: {
     // realUrl(str){
@@ -164,7 +164,7 @@ export default {
     //   }
     // }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -260,17 +260,43 @@ export default {
   padding-top: 10px;
   padding-bottom: 10px;
 
-  .swiper-slide {
+  .swiper-slide1 {
     background-position: center;
     background-size: cover;
     width: 300px;
     height: 300px;
 
     img {
-      width: 100%;
-      height: 100%;
+      // width: 100%;
+      height: 320px;
     }
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
   }
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 
 // 第三个轮播样式
@@ -284,28 +310,28 @@ export default {
     bottom: 0;
     z-index: 99;
   }
-}
-.swiper-slide {
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  .content-pic {
+  .swiper-slide {
     width: 100%;
-    position: relative;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
 
-    img {
-      width: 375px;
-      height: 140px;
-    }
+    .content-pic {
+      width: 100%;
+      position: relative;
 
-    .status {
-      width: 40px !important;
-      position: absolute;
-      right: 0;
-      top: 10px;
-      height: 18px;
+      img {
+        width: 375px;
+        height: 140px;
+      }
+
+      .status {
+        width: 40px !important;
+        position: absolute;
+        right: 0;
+        top: 10px;
+        height: 18px;
+      }
     }
   }
 }
