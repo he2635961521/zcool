@@ -8,6 +8,7 @@ import gpscity from './views/buy/choice-city.vue'
 import goodDetail from './views/buy/detail.vue'
 import Home from './views/home/hdh/Home.vue'
 import Films from './views/home/hdh/films.vue'
+import buyByciname from './views/buy/buyByciname.vue'
 
 const Person = () => import('./views/person/person.vue')
 const Login = () => import('./views/person/login.vue')
@@ -116,6 +117,10 @@ const router = new Router({
       path: '/cinemadetail',
       name: 'cinemadetail',
       component: CinemaDetail
+    },
+    {
+      path: '/buy/byciname',
+      component: buyByciname
     }
 
     // {

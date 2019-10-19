@@ -10,7 +10,7 @@
     </div>
     <div class="addressList">
       <ul>
-        <li v-for="ciname in cinameList" :key="ciname.cinemaId">
+        <li v-for="ciname in cinameList" :key="ciname.cinemaId" @click="toCinameDetail(ciname)">
           <div class="cinameName">
             {{ ciname.cinemaName }}
           </div>
@@ -30,6 +30,14 @@ export default {
     return {
       curCity: '深圳',
       cinameList: []
+    }
+  },
+  methods: {
+    toCinameDetail (ciname) {
+      this.$router.push({
+        name: 'cinemadetail',
+        params: { id: ciname.cinemaId, cinemaAdd: ciname.cinemaAdd, cinemaName: ciname.cinemaName }
+      })
     }
   },
 
@@ -59,6 +67,7 @@ export default {
 <style lang="scss">
 @import "../../assets/styles/common/mixin.scss";
   .choiseCity{
+    background: white;
     width: 100%;
     height: 41px;
     display: flex;
@@ -83,6 +92,7 @@ export default {
     }
   }
   .addressList{
+    background: white;
     li{
       height: 62px;
       @include border-bottom;

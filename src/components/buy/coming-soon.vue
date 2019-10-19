@@ -2,7 +2,7 @@
   <div class="hotShowing">
     <ul v-for="obj in useComingList" :key="obj.date">
       <p class="date-tile"> {{ timeFormat(obj.date) }} </p>
-      <li v-for="movie in obj.list" :key="movie.filmId" @click="toDetail(movie.pomsContId)">
+      <li v-for="movie in obj.list" :key="movie.filmId" @click="toDetail(movie.pomsContId,movie.isPreSale)">
         <div class="movie-left">
           <img :src="`${movie.h5pics.highResolutionV}`" alt="">
         </div>
@@ -81,12 +81,12 @@ export default {
       return `${yue}月${tian}日  周${week}`
     },
 
-    toDetail (id) {
-      this.$router.push('/buy/detail/' + id)
+    toDetail (id, pre) {
+      this.$router.push({ path: '/buy/detail/' + id, query: { plan: pre } })
     },
 
     buyTicket (id) {
-
+      this.$router.push('/login')
     }
 
   },
@@ -105,6 +105,7 @@ export default {
   .hotShowing{
     width: 100%;
     font-size: 16px;
+    background: white;
     ul{
       .date-tile{
         padding: 5px 12px;

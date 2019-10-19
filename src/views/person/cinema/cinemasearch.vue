@@ -93,9 +93,11 @@ export default {
       this.$router.go(-1)
     },
     getdata () {
-      axios.post('/cinemaapi', {
+      axios.post('/api/mta-service/data/migu/validCinemaes.jsp', {
         cityCode: 4900,
         orderType: 1,
+        // filmId: 51167,
+        // showDate: 2019-10-18,
         longitude: '',
         latitude: ''
       }, {
