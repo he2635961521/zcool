@@ -1,21 +1,23 @@
 <template>
   <div class="bscroll" style="height:720px">
-    <div>
-      <div class="swiper-container swiper-container11" ref="swiper1">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide swiper-slide11" v-for="(item,index) of updownloop" :key="index">
+    <div class="wmy">
+      <div class="swiper-container swiper-container11" ref="swiper4">
+        <div class="swiper-wrapper ">
+          <div class="swiper-slide" v-for="(item,index) of updownloop" :key="index">
+             <a :href="`${item.wapUrl}`">
             <div class="luuuu"></div>
             <img :src="`http://movie.miguvideo.com/publish/${item.imgSrc}`" />
+             </a>
           </div>
         </div>
       </div>
 
       <div class="Module">
-        <div class="module-name">影史100个经典角色</div>
+        <div class="module-name">{{peopletitlle.name}}</div>
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(people,index)  in filmPeople" :key="index" style="padding-right:6px">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${people.SRC_CONT_ID}`">
                 <div class="pic">
                   <img
                     style="width:118px,heiht:175px"
@@ -35,11 +37,11 @@
       </div>
 
       <div class="Module">
-        <div class="module-name">影史100人</div>
+        <div class="module-name">{{peopletitlle2.name}}</div>
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(oneman,index)  in peple" :key="index" style="padding-right:3px">
-              <a href>
+              <a :href="`${oneman.wapUrl}`">
                 <div class="pic">
                   <img
                     style="width:118px,heiht:175px"
@@ -59,18 +61,38 @@
       </div>
 
       <div class="Module">
-        <div class="module-name">电影魔方</div>
+        <div class="module-name">{{mofang.name}}</div>
         <div class="hotFilmList box">
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID1}`">
           <div class="hotFilmListBig">豆瓣TOP250</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID2}`">
           <div class="hotFilmListSmall">帝国TOP</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID3}`">
           <div class="hotFilmListSmall">金马奖佳片</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID4}`">
           <div class="hotFilmListSmall">IMDb TOP</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID5}`">
           <div class="hotFilmListBig">奥斯卡最佳影片</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID6}`">
           <div class="hotFilmListSmall">金像奖佳片</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID7}`">
           <div class="hotFilmListSmall">柏林金熊奖</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID8}`">
           <div class="hotFilmListSmall">戛纳金棕榈</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID9}`">
           <div class="hotFilmListSmall">威尼斯金狮</div>
+          </a>
+          <a :href="`https://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/moreModule-Vertical.jsp?nodeId=${mofangID1}`">
           <div class="hotFilmListSmall">金鸡奖佳片</div>
+          </a>
         </div>
       </div>
 
@@ -79,7 +101,7 @@
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(item,index) of women" :key="index">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${item.SRC_CONT_ID}`">
                 <div class="pic">
                   <img :src="`http://movie.miguvideo.com/${item.imgSrcV}`" alt />
                   <p class="pionts">{{item.miguScore}}</p>
@@ -99,7 +121,7 @@
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(gongqi,index) of gongqijun" :key="index" style="padding-right:6px">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${gongqi.SRC_CONT_ID}`">
                 <div class="pic">
                   <img :src="`http://movie.miguvideo.com/${gongqi.imgSrcV}`" alt />
                   <p class="pionts">{{gongqi.miguScore}}</p>
@@ -119,7 +141,7 @@
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(wolf,index) of manandwolf" :key="index" style="padding-right:6px">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${wolf.SRC_CONT_ID}`">
                 <div class="pic">
                   <img :src="`http://movie.miguvideo.com/${wolf.imgSrcV}`" alt />
                   <p class="pionts">{{wolf.miguScore}}</p>
@@ -139,7 +161,7 @@
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(marvel,index) of marvelFilm" :key="index" style="padding-right:6px">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${marvel.SRC_CONT_ID}`">
                 <div class="pic">
                   <img :src="`http://movie.miguvideo.com/${marvel.imgSrcV}`" alt />
                   <p class="pionts">{{marvel.miguScore}}</p>
@@ -174,8 +196,23 @@ export default {
       name: {},
 
       women: [],
+      peopletitlle: [],
+      peopletitlle2: [],
       filterWomen: [],
       womenname: {},
+
+      mofang: [],
+      mofangID: [],
+      mofangID1: [],
+      mofangID2: [],
+      mofangID3: [],
+      mofangID4: [],
+      mofangID5: [],
+      mofangID6: [],
+      mofangID7: [],
+      mofangID8: [],
+      mofangID9: [],
+      mofangID10: [],
 
       gongqijun: [],
       gongqijunname: {},
@@ -212,7 +249,45 @@ export default {
         this.updownloop = response.data[0].list
         this.filmPeople = response.data[1].list
         this.peple = response.data[2].list
+        // this.people=response.data[2].list[1]
+        console.log(this.peple)
+        this.peopletitlle = response.data[1]
+        this.peopletitlle2 = response.data[2]
       })
+    // 电影魔方
+    axios
+      .post(
+        '/api/lovev/miguMovie/data/seeFilmData.jsp',
+        {
+          nodeId: 70035127,
+          pagesize: 3,
+          pageidx: 2
+        },
+        {
+          transformRequest: data => {
+            let arr = []
+            for (let key in data) {
+              arr.push(`${key}=${data[key]}`)
+            }
+            return arr.join('&')
+          }
+        }
+      )
+      .then(response => {
+        this.mofang = response.data[0]
+        this.mofangID = response.data[0].list
+        this.mofangID1 = response.data[0].list[0].REDREICT_ID
+        this.mofangID2 = response.data[0].list[1].REDREICT_ID
+        this.mofangID3 = response.data[0].list[2].REDREICT_ID
+        this.mofangID4 = response.data[0].list[3].REDREICT_ID
+        this.mofangID5 = response.data[0].list[4].REDREICT_ID
+        this.mofangID6 = response.data[0].list[5].REDREICT_ID
+        this.mofangID7 = response.data[0].list[6].REDREICT_ID
+        this.mofangID8 = response.data[0].list[7].REDREICT_ID
+        this.mofangID9 = response.data[0].list[8].REDREICT_ID
+        this.mofangID10 = response.data[0].list[9].REDREICT_ID
+      })
+
     // 女性导演作品
     axios
       .post(
@@ -314,7 +389,7 @@ export default {
   mounted () {
     setTimeout(() => {
       /* eslint-disable */
-      new Swiper(this.$refs.swiper1, {
+      new Swiper(this.$refs.swiper4, {
         loop: true,
         slidesPperView: "auto",
         speed: 300,
@@ -382,6 +457,7 @@ body {
   height: 82px;
   background: #b97979;
 }
+.wmy {
 .swiper-container11 {
   width: 100%;
   height: 230px;
@@ -409,5 +485,7 @@ body {
   -webkit-align-items: center;
   align-items: center;
 }
+}
+
 </style>
 

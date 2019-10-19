@@ -4,9 +4,9 @@
       <van-swipe :autoplay="3000" indicator-color="white" effect="cube">
         <div class="freeWatch">
           <van-swipe-item v-for="(bigpic,index) of loopPic" :key="index">
-            <router-link :to="`/film/detail`">
+            <a :href="`http://localhost:8080/#/buy/detail/${bigpic.SRC_CONT_ID}`">
               <img :src="`http://movie.miguvideo.com/publish/${bigpic.imgSrc}`" alt />
-            </router-link>
+            </a>
           </van-swipe-item>
         </div>
       </van-swipe>
@@ -16,7 +16,7 @@
         <div class="hotFilmList">
           <ul>
             <li v-for="(item,index) of freeWatchFilm" :key="index">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${item.SRC_CONT_ID}`">
                 <div class="pic">
                   <img :src="`http://movie.miguvideo.com/${item.imgSrcV}`" alt />
                   <p class="pionts">{{item.miguScore}}</p>
@@ -36,7 +36,7 @@
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(blmovies,index)  in Blmovies" :key="index" style="padding-right:6px">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${blmovies.SRC_CONT_ID}`">
                 <div class="pic">
                   <img
                     style="width:118px,heiht:175px"
@@ -60,7 +60,7 @@
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(douban,index)  in doubanFilm" :key="index" style="padding-right:6px">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${douban.SRC_CONT_ID}`">
                 <div class="pic">
                   <img
                     style="width:118px,heiht:175px"
@@ -84,7 +84,7 @@
         <div class="hotFilmList">
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(migudubo,index)  in migidubo" :key="index" style="padding-right:6px">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${migudubo.SRC_CONT_ID}`">
                 <div class="pic">
                   <img
                     style="width:118px,heiht:175px"
@@ -118,7 +118,7 @@
           <p class="hoodliwood2">{{holiwoodFilms0.LONG_NAME}}</p>
           <ul>
             <li v-for="(holiwoodmovies,index)  in holiwoodFilms1" :key="index">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${holiwoodmovies.SRC_CONT_ID}`">
                 <div class="pic">
                   <img :src="`http://movie.miguvideo.com/${holiwoodmovies.imgSrcV}`" alt />
                   <p class="pionts">{{holiwoodmovies.miguScore}}</p>
@@ -160,7 +160,7 @@
           <p class="hoodliwood2">{{scarefilm0.LONG_NAME}}</p>
           <ul style="flex-wrap:nowrap;overflow-y:hidden">
             <li v-for="(scarefilmmm,index)  in scarefilm1" :key="index" style="padding-right:6px">
-              <a href>
+              <a :href="`http://localhost:8080/#/buy/detail/${scarefilmmm.SRC_CONT_ID}`">
                 <div class="pic">
                   <img :src="`http://movie.miguvideo.com/${scarefilmmm.imgSrcV}`" alt />
                   <p class="pionts">{{scarefilmmm.miguScore}}</p>
@@ -308,7 +308,6 @@ export default {
   mounted () {
     let bs = new BScroll('.bscroll', {
       probeType: 3,
-      click: true,
       eventPassthrough: 'horizontal',
       pullUpLoad: true // 开启上拉加载
     })
