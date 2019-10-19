@@ -90,7 +90,7 @@ export default {
     getmovie (mes) {
       axios
         .post(
-          '/cinemamovie',
+          '/api/mta-service/data/migu/cinemaMovie.jsp',
           {
             cinemaId: mes.cinemaid,
             type: 0
@@ -118,7 +118,7 @@ export default {
     getshows (mes, fs) {
       axios
         .post(
-          '/dayshows',
+          '/api/mta-service/data/migu/userShows.jsp',
           {
             cinemaId: mes.cinemaid,
             filmId: fs,
